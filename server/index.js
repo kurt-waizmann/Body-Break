@@ -2,7 +2,19 @@
 
 const express = require('express');
 const morgan = require('morgan');
-const { getItemsByBrand, getItemsByCatergory } = require('./Handlers/handler');
+const { getItemsByBrand, getItemsByCatergory } = require('./handlers/handler');
+const { getAllItems } = require('./handlers/getAllItems')
+const { getCartDetails } = require('./handlers/getCartDetails')
+const { getOrderDetails } = require('./handlers/getOrderDetails')
+const { getSuggestedItems } = require('./handlers/getSuggestedItems')
+const { postCartItems } = require('./handlers/postCartItems')
+const { postOrderDetail } = require('./handlers/postOrderDetail')
+const { updateCart } = require('./handlers/updateCart')
+const { updateStock } = require('./handlers/updateStock')
+const { deleteCart } = require('./handlers/deleteCart')
+
+
+
 
 const PORT = 4000;
 
@@ -24,10 +36,62 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use('/', express.static(__dirname + '/'))
 
-  // REST endpoints?
+
+
+// GET ENDPOINTS //
+
+  // get all items
+  .get("/api/items/all", getAllItems)
+
+  // get items by their brand
   .get("/api/items/brand/:brandId", getItemsByBrand)
+
+  // get items by their category type
   .get("/api/items/category/:category", getItemsByCatergory)
 
+  // get 6 of the highest quantity items
+  .get("/api/items/suggested", getSuggestedItems)
+
+  // get details about what's in the cart
+  .get("/api/cart/details", getCartDetails)
+
+  // get details about the completed order
+  .get("/api/order/details", getOrderDetails)
+
+  // get bacon
   .get('/bacon', (req, res) => res.status(200).json('🥓'))
+
+
+
+
+// POST ENDPOINTS // 
+
+  // post order after completed purchase
+  .post("/api/order/details", postOrderDetail)
+
+  // post items into the cart
+  .post("/api/cart/details", postCartItems)
+
+
+
+
+// PATCH ENDPOINTS //
+
+  // update cart in database by adding or removing item(s)
+  .patch("/api/cart/details", updateCart)
+
+  // update stock after item(s) are purchased
+  .patch("/api/items/update", updateStock)
+
+
+
+
+// DELETE ENDPOINTS //
+
+  //remove all items in cart
+  .delete("/api/cart/delete", deleteCart)
+
+
+
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
