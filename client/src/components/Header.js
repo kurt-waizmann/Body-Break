@@ -21,12 +21,12 @@ const Header = () => {
           <option>All Catagories</option>
           <option>All Brands</option>
         </Dropdown>
-        <Catagories onClick={() => nav("/fitness")}>Fitness</Catagories>
-        <Catagories onClick={() => nav("/medical")}>Medical</Catagories>
-        <Catagories onClick={() => nav("/lifestyle")}>Lifestyle</Catagories>
-        <Catagories onClick={() => nav("/entertainment")}>
+        <Categories onClick={() => nav("/fitness")}>Fitness</Categories>
+        <Categories onClick={() => nav("/medical")}>Medical</Categories>
+        <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
+        <Categories onClick={() => nav("/entertainment")}>
           Entertainment
-        </Catagories>
+        </Categories>
       </Nav>
     </>
   );
@@ -141,7 +141,7 @@ const Nav = styled.div`
   font-weight: bold;
 `;
 
-const Catagories = styled.div`
+const Categories = styled.div`
   cursor: pointer;
   padding: 10px;
   :hover {
