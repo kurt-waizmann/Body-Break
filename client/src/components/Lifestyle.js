@@ -1,28 +1,22 @@
 import styled from "styled-components";
 import Header from "./Header";
-import Banner from "./Banner";
 
-const Homepage = () => {
+const Lifestyle = () => {
   return (
     <>
-      <Container>
-        <Wrapper>
-          <Header />
-          <Title>BodyBreak</Title>
-          <Banner />
-        </Wrapper>
-      </Container>
+      <Wrapper>
+        <Header />
+        <Title>Lifestyle</Title>
+      </Wrapper>
     </>
   );
 };
 
-const Container = styled.div`
-  background-color: #1c1b1b;
+const Wrapper = styled.div`
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  background-color: #1c1b1b;
 `;
-
-const Wrapper = styled.div``;
 
 const Title = styled.div`
   display: flex;
@@ -32,6 +26,7 @@ const Title = styled.div`
   color: #04d9ff;
   font-size: x-large;
   padding: 30px;
+  text-decoration: underline;
 `;
 
-export default Homepage;
+export default Lifestyle;
