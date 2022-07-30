@@ -1,7 +1,7 @@
 
 
 
-const postCartItems = (res, req) => {}
+const postCartItems = (req, res) => {}
 
 
 module.exports = { postCartItems};

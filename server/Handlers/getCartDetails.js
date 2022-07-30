@@ -1,7 +1,7 @@
 
 
 
-const getCartDetails = (res, req) => {}
+const getCartDetails = (req, res) => {}
 
 
 module.exports = { getCartDetails};

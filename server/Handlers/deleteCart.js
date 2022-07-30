@@ -1,6 +1,6 @@
 
 
-const deleteCart = (res, req) => {}
+const deleteCart = (req, res) => {}
 
 
 module.exports = { deleteCart};

@@ -1,7 +1,7 @@
 
 
 
-const postOrderDetail = (res, req) => {}
+const postOrderDetail = (req, res) => {}
 
 
 module.exports = { postOrderDetail};
