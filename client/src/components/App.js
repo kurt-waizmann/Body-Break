@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
 import Entertainment from "./Entertainment";
 import Fitness from "./Fitness";
 import Homepage from "./Homepage";
@@ -9,6 +10,7 @@ const App = () => {
   return (
     <>
       <Router>
+      <GlobalStyles />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/fitness" element={<Fitness />} />
