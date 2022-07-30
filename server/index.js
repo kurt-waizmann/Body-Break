@@ -2,7 +2,7 @@
 
 const express = require('express');
 const morgan = require('morgan');
-const { getItemsByBrand, getItemsByCatergory } = require('./handlers/handler');
+const { getItemsByBrand } = require('./handlers/getItemsByBrand');
 const { getAllItems } = require('./handlers/getAllItems')
 const { getCartDetails } = require('./handlers/getCartDetails')
 const { getOrderDetails } = require('./handlers/getOrderDetails')
@@ -11,7 +11,8 @@ const { postCartItems } = require('./handlers/postCartItems')
 const { postOrderDetail } = require('./handlers/postOrderDetail')
 const { updateCart } = require('./handlers/updateCart')
 const { updateStock } = require('./handlers/updateStock')
-const { deleteCart } = require('./handlers/deleteCart')
+const { deleteCart } = require('./handlers/deleteCart');
+const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
 
 
 
