@@ -11,17 +11,22 @@ const Header = () => {
         <SearchBar placeholder="Search for..."></SearchBar>
         <SigninButton>Sign-in</SigninButton>
         <IconDiv>
-          <RiShoppingCartFill style={{ color: "#66fcf1" }} />
+          <RiShoppingCartFill style={{ color: "#04d9ff" }} />
         </IconDiv>
       </Wrapper>
       <Nav>
         <Dropdown>
           <option>All</option>
+          <option>All Items</option>
+          <option>All Catagories</option>
+          <option>All Brands</option>
         </Dropdown>
-        <Catagories>Fitness</Catagories>
-        <Catagories>Medical</Catagories>
-        <Catagories>Lifestyle</Catagories>
-        <Catagories>Entertainment</Catagories>
+        <Categories onClick={() => nav("/fitness")}>Fitness</Categories>
+        <Categories onClick={() => nav("/medical")}>Medical</Categories>
+        <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
+        <Categories onClick={() => nav("/entertainment")}>
+          Entertainment
+        </Categories>
       </Nav>
     </>
   );
@@ -37,20 +42,21 @@ const Wrapper = styled.div`
 `;
 
 const SigninButton = styled.button`
-  border-color: #66fcf1;
+  border-color: #04d9ff;
   background-color: black;
-  color: #66fcf1;
+  color: #04d9ff;
   margin-right: 20px;
   border-radius: 5px;
   height: 30px;
   font-weight: bold;
-  text-shadow: 0 0 0.125em #66fcf1 hsl(0 0% 100% / 0.3), 0 0 0.35em #66fcf1;
-  box-shadow: 0 0 0.5em 0 #66fcf1, inset 0 0 0.5em 0 #66fcf1;
+  text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
+  font-family: "Poppins", sans-serif;
   /* :before {
     pointer-events: none;
     content: "";
     position: absolute;
-    background: #66fcf1;
+    background: #04d9ff;
     top: 5%;
     left: 72.4%;
     right: 0;
@@ -62,26 +68,27 @@ const SigninButton = styled.button`
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #66fcf1;
+    background-color: #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 600ms;
   }
 `;
 
 const HomeButton = styled.button`
-  border-color: #66fcf1;
+  border-color: #04d9ff;
   background-color: black;
-  color: #66fcf1;
+  color: #04d9ff;
   border-radius: 5px;
   height: 30px;
   font-weight: bold;
-  text-shadow: 0 0 0.125em #66fcf1 hsl(0 0% 100% / 0.3), 0 0 0.35em #66fcf1;
-  box-shadow: 0 0 0.5em 0 #66fcf1, inset 0 0 0.5em 0 #66fcf1;
+  text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
+  font-family: "Poppins", sans-serif;
   /* :before {
     pointer-events: none;
     content: "";
     position: absolute;
-    background: #66fcf1;
+    background: #04d9ff;
     top: 5%;
     left: 25.2%;
     right: 0;
@@ -93,7 +100,7 @@ const HomeButton = styled.button`
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #66fcf1;
+    background-color: #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 600ms;
   }
@@ -103,6 +110,8 @@ const SearchBar = styled.input`
   border-radius: 5px;
   height: 28px;
   width: 800px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
 `;
 
 const IconDiv = styled.div`
@@ -113,9 +122,11 @@ const Dropdown = styled.select`
   width: 55px;
   opacity: 0.8;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
   :hover {
-    text-shadow: 0 0 0.125em #66fcf1 hsl(0 0% 100% / 0.3), 0 0 0.35em #66fcf1;
-    box-shadow: 0 0 0.5em 0 #66fcf1, inset 0 0 0.5em 0 #66fcf1;
+    text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+    box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
   }
@@ -126,14 +137,16 @@ const Nav = styled.div`
   justify-content: space-evenly;
   margin-top: 30px;
   color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
 `;
 
-const Catagories = styled.div`
+const Categories = styled.div`
   cursor: pointer;
   padding: 10px;
   :hover {
-    text-shadow: 0 0 0.125em #66fcf1 hsl(0 0% 100% / 0.3), 0 0 0.35em #66fcf1;
-    box-shadow: 0 0 0.5em 0 #66fcf1, inset 0 0 1em 0 #66fcf1;
+    text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+    box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 1em 0 #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 600ms;
   }
