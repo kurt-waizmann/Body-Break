@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
+import { useContext } from "react";
+import { AllItemsContext } from "./AllItemsContext";
 
 const Header = () => {
+  // const { setDropdownSelection } = useContext(AllItemsContext);
   const nav = useNavigate();
+
+  const handleChange = (value) => {
+    nav(value);
+  };
 
   return (
     <>
@@ -16,9 +23,11 @@ const Header = () => {
         </IconDiv>
       </Wrapper>
       <Nav>
-        <Dropdown>
-          <option>All</option>
-          <option>All Items</option>
+        <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
+          <option value={""} disabled selected hidden>
+            All
+          </option>
+          <option value="/allitems">All Items</option>
           <option>All Catagories</option>
           <option>All Brands</option>
         </Dropdown>
@@ -120,7 +129,7 @@ const IconDiv = styled.div`
 `;
 
 const Dropdown = styled.select`
-  width: 55px;
+  /* width: 55px; */
   opacity: 0.8;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
@@ -135,7 +144,7 @@ const Dropdown = styled.select`
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: 30px;
   color: white;
   font-family: "Poppins", sans-serif;
