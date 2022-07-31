@@ -3,6 +3,7 @@ import Header from "./Header";
 import Banner from "./Banner";
 
 const Homepage = () => {
+  
   return (
     <>
       <Container>
