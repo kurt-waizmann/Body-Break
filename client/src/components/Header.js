@@ -28,8 +28,8 @@ const Header = () => {
             All
           </option>
           <option value="/allitems">All Items</option>
-          <option>All Catagories</option>
-          <option>All Brands</option>
+          <option value="/allcategories">All Catagories</option>
+          <option value="/allbrands">All Brands</option>
         </Dropdown>
         <Categories onClick={() => nav("/fitness")}>Fitness</Categories>
         <Categories onClick={() => nav("/medical")}>Medical</Categories>
