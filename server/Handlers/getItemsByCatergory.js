@@ -5,40 +5,44 @@ const dbName = "Group-Project-Watchout";
 // returns a list of all items by Cateory
 const getItemsByCatergory = async (req, res) => {
     //jon items and companies collections by companyId
-    const query = [
-      {
+    const query =     [
+        {
         $lookup: {
-          from: "companies",
-          localField: "companyId",
-          foreignField: "_id",
-          as: "newitems",
+          from: 'companies',
+          localField: 'companyId',
+          foreignField: '_id',
+          as: 'companyInfo'
+          }
         },
-      },
-      { $match: { $and: [{ category: req.params.category }] } },
-      {
-        $project: {
-          _id: 1,
-          name: 1,
-          price: 1,
-          body_location: 1,
-          category: 1,
-          imageSrc: 1,
+        {
+        $match:{
+          $and:[{"category" : req.params.category}]
+          }
+        },
+        {   
+        $project:{
+          _id : 1,
+          name : 1,
+          price : 1,
+          body_location : 1,
+          category : 1,
+          imageSrc : 1,
           numInStock: 1,
           companyId: 1,
-          companyName: "newitems.name",
-        },
-      },
-    ];
-    //---------------------------------------------------------------------
-    try {
-      await client.connect();
-      const db = client.db(dbName);
-      const items = await db.collection("items").aggregate(query).toArray();
-      //distinc all categorys
-      const companys = [...new Set(items.map((item) => item.companyId))];
-  
+          companyInfo: "$companyInfo"
+          } 
+        }
+      ];
+      //---------------------------------------------------------------------
+      try {
+          await client.connect();
+          const db = client.db(dbName);
+          const items = await db.collection("items").aggregate(query).toArray();
+          //distinc all comanies
+          const companies = [...new Set(items.map((item) => item.companyId))];
+          
       //----------------------------seprat items by Brand (companyId)------------------------------------------
-      const resualt = companys.map((company) => {
+      const resualt = companies.map((company) => {
         return {
           [company]: [...items.filter((item) => item.companyId === company)],
         };
@@ -55,3 +59,8 @@ const getItemsByCatergory = async (req, res) => {
   };
   
 module.exports = {getItemsByCatergory};  
+
+
+
+
+
