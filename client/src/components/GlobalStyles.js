@@ -62,13 +62,17 @@ button {
   font-family: "Poppins", sans-serif;
   text-align: center;
 }
-
-p,
+p {
+  font-family: roboto, sans-serif;
+  font-weight: 100;
+  font-size: 10px;
+}
 a,
 li,
 blockquote,
 input {
   font-family: roboto, sans-serif;
+  font-weight: 100;
 }
   #root{
     height: 100vh;

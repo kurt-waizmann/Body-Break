@@ -14,12 +14,12 @@ const AllItems = () => {
         <Container>
           {items.map((item, key) => {
             return (
-              // <ProductComponent />
-              <Items key={key}>
-                <Imgs src={item.imageSrc} />
-                <Price>Price{item.price}</Price>
-                <div>{item.numInStock} Available</div>
-              </Items>
+              <ProductComponent item={item} />
+              // <Items key={key}>
+              //   <Imgs src={item.imageSrc} />
+              //   <Price>Price{item.price}</Price>
+              //   <div>{item.numInStock} Available</div>
+              // </Items>
             );
           })}
         </Container>
@@ -47,7 +47,8 @@ const Container = styled.div`
   display: flex;
   flex-flow: wrap;
   justify-content: center;
-  gap: 50px;
+  margin: 10px;
+  gap: 20px;
   color: white;
 `;
 
