@@ -6,6 +6,8 @@ import Homepage from "./Homepage";
 import Lifestyle from "./Lifestyle";
 import Medical from "./Medical";
 import AllItems from "./AllItems";
+import AllBrands from "./AllBrands";
+import AllCategories from "./AllCategories";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
           <Route exact path="/lifestyle" element={<Lifestyle />} />
           <Route exact path="/entertainment" element={<Entertainment />} />
           <Route exact path="/allitems" element={<AllItems />} />
+          <Route exact path="/allcategories" element={<AllCategories />} />
+          <Route exact path="/allbrands" element={<AllBrands />} />
         </Routes>
       </Router>
     </>
