@@ -6,6 +6,7 @@ export const AllItemsProvider = ({ children }) => {
   const [items, setItems] = useState(null);
   const [itemsStatus, setItemsStatus] = useState("Loading");
 
+
   useEffect(() => {
     const fetchFunc = async () => {
       try {
