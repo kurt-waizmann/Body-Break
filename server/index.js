@@ -8,7 +8,7 @@ const { getCartDetails } = require('./handlers/getCartDetails')
 const { getOrderDetails } = require('./handlers/getOrderDetails')
 const { getSuggestedItems } = require('./handlers/getSuggestedItems')
 const { postCartItems } = require('./handlers/postCartItems')
-const { postOrderDetail } = require('./handlers/postOrderDetail')
+const { postOrderDetails } = require('./handlers/postOrderDetails')
 const { updateCart } = require('./handlers/updateCart')
 const { updateStock } = require('./handlers/updateStock')
 const { deleteCart } = require('./handlers/deleteCart');
@@ -68,7 +68,7 @@ express()
 // POST ENDPOINTS // 
 
   // post order after completed purchase
-  .post("/api/order/details", postOrderDetail)
+  .post("/api/order/details", postOrderDetails)
 
   // post items into the cart
   .post("/api/cart/details", postCartItems)
