@@ -1,7 +1,7 @@
 
 
 
-const getSuggestedItems = (res, req) => {}
+const getSuggestedItems = (req, res) => {}
 
 
 module.exports = { getSuggestedItems};

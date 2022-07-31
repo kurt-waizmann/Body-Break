@@ -4,6 +4,7 @@ import { RiShoppingCartFill } from "react-icons/ri";
 
 const Header = () => {
   const nav = useNavigate();
+
   return (
     <>
       <Wrapper>
@@ -52,19 +53,19 @@ const SigninButton = styled.button`
   text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
   box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
   font-family: "Poppins", sans-serif;
-  /* :before {
+  :before {
     pointer-events: none;
     content: "";
     position: absolute;
     background: #04d9ff;
     top: 5%;
-    left: 72.4%;
+    left: 72%;
     right: 0;
     height: 20px;
     width: 30px;
     transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
     filter: blur(1em);
-  } */
+  }
   :hover {
     cursor: pointer;
     color: black;
@@ -84,19 +85,19 @@ const HomeButton = styled.button`
   text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
   box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
   font-family: "Poppins", sans-serif;
-  /* :before {
+  :before {
     pointer-events: none;
     content: "";
     position: absolute;
     background: #04d9ff;
     top: 5%;
-    left: 25.2%;
+    left: 24.8%;
     right: 0;
     height: 20px;
     width: 30px;
-    transform: perspective(1em) rotateX(40deg) scale(1, 0.8);
+    transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
     filter: blur(1em);
-  } */
+  }
   :hover {
     cursor: pointer;
     color: black;
@@ -132,7 +133,7 @@ const Dropdown = styled.select`
   }
 `;
 
-const Nav = styled.div`
+const Nav = styled.nav`
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
