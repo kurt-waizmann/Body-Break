@@ -2,6 +2,7 @@ import Header from "./Header";
 import styled from "styled-components";
 import { useContext } from "react";
 import { AllItemsContext } from "./AllItemsContext";
+import ProductComponent from "./ProductComponent";
 
 const AllItems = () => {
   const { items } = useContext(AllItemsContext);
@@ -13,6 +14,7 @@ const AllItems = () => {
         <Container>
           {items.map((item, key) => {
             return (
+              // <ProductComponent />
               <Items key={key}>
                 <Imgs src={item.imageSrc} />
                 <Price>Price{item.price}</Price>

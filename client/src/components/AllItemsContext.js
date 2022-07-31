@@ -5,7 +5,7 @@ export const AllItemsContext = createContext();
 export const AllItemsProvider = ({ children }) => {
   const [items, setItems] = useState(null);
   const [itemsStatus, setItemsStatus] = useState("Loading");
-
+  const [dropdownSelection, setDropdownSelection] = useState(null);
 
   useEffect(() => {
     const fetchFunc = async () => {
@@ -31,7 +31,14 @@ export const AllItemsProvider = ({ children }) => {
 
   return (
     <AllItemsContext.Provider
-      value={{ items, setItems, itemsStatus, setItemsStatus }}
+      value={{
+        items,
+        setItems,
+        itemsStatus,
+        setItemsStatus,
+        dropdownSelection,
+        setDropdownSelection,
+      }}
     >
       {children}
     </AllItemsContext.Provider>
