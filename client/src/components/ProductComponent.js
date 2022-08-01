@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BiCart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { BrandContext } from "./BrandContext";
 
 const ProductComponent = (item) => {
+    const {brands} = useContext(BrandContext);
+  const [brand, setBrand] = useState(null);
+  const [brandStatus, setBrandStatus] = useState("");
   let nav = useNavigate();
+  //   console.log("item", item);
+  // console.log("brand", brand)
+  //   console.log("companyId", item.item.companyId);
+  // console.log(item.item.price)
+//   console.log(typeof brands)
 
-  useEffect(() => {
-    //POST to add item to cart
-  }, []);
+  //POST to add item to cart
+  useEffect(() => {}, []);
+
+  //   GET BRAND NAME BY ID
+
+//     const fetchFunc = async () => {
+//       try {
+//         const res = await fetch(`/api/companies/${item.item.companyId}`);
+//         const data = await res.json();
+//         console.log("fetch", data);
+//         setBrand(data);
+//         setBrandStatus("Idle");
+//       } catch (err) {
+//         setBrandStatus("Error");
+//       }
+//     };
+//     fetchFunc();
+// //     //eslint-disable-next-line
+//   }, []);
+
+
 
   const handleSubmit = () => {};
 
-  console.log(item);
+  //   console.log(item);
   return (
     <>
       <Wrapper key={item.item._id}>
         <Imgs src={item.item.imageSrc} alt="item.item image" />
         <ProductInfo>
           <ProductName>{item.item.name}</ProductName>
-          <Brand>
+          {/* <Brand>
             <Span>Brand:</Span>
-            {item.item.companyId}
-          </Brand>
+            {brand}
+          </Brand> */}
           <Price>
             <Span>Price:</Span>
             {item.item.price}
