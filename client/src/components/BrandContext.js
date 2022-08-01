@@ -5,7 +5,7 @@ export const BrandContext = createContext();
 export const BrandContextProvider = ({ children }) => {
   const [brands, setBrands] = useState(null);
   const [brandsStatus, setBrandsStatus] = useState("Loading");
-  //   console.log(brands)
+  // console.log(brands)
 
   useEffect(() => {
     const fetchFunc = async () => {

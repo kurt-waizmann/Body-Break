@@ -3,13 +3,14 @@ import Header from "./Header";
 import Banner from "./Banner";
 import { useContext } from "react";
 import { AllItemsContext } from "./AllItemsContext";
+import { BiCart } from "react-icons/bi";
 
 const Homepage = () => {
   const { items } = useContext(AllItemsContext);
 
   const suggestions = [];
   const suggested = items.map((item) => item);
-  while (suggestions.length < 20) {
+  while (suggestions.length < 24) {
     suggestions.push(suggested[Math.floor(Math.random() * suggested.length)]);
   }
 
@@ -42,6 +43,17 @@ const Homepage = () => {
                       <Span>Available in stock:</Span>
                       {suggestion.numInStock}
                     </NumInStock>
+                    {suggestion.numInStock > 0 ? (
+                      <AddToCart disabled={false}>
+                        <CartSpan>Add To Cart</CartSpan>
+                        <BiCart />
+                      </AddToCart>
+                    ) : (
+                      <OutOfStock>
+                        <StyledP>Item is temporarily</StyledP>
+                        <StyledP>Out of stock</StyledP>
+                      </OutOfStock>
+                    )}
                   </ProductInfo>
                 </Wrapper>
               );
@@ -118,6 +130,7 @@ const AddToCart = styled.button`
   border: none;
   border-radius: 4px;
   margin-top: 20px;
+  cursor: pointer;
 `;
 const Span = styled.span`
   margin-right: 5px;
@@ -136,6 +149,7 @@ const OutOfStock = styled.div`
   border: none;
   border-radius: 4px;
   margin-top: 20px;
+  cursor: not-allowed;
 `;
 const StyledP = styled.p`
   font-size: 14px;
