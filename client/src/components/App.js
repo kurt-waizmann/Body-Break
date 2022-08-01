@@ -9,6 +9,8 @@ import AllItems from "./AllItems";
 import AllBrands from "./AllBrands";
 import AllCategories from "./AllCategories";
 import Cart from "./Cart";
+import OrderForm from "./OrderForm";
+import ConfirmationPage from "./ConfirmationPage";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
           <Route exact path="/allcategories" element={<AllCategories />} />
           <Route exact path="/allbrands" element={<AllBrands />} />
           <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/orderform" element={<OrderForm />} />
+          <Route exact path="/confirmationpage" element={<ConfirmationPage />} />
         </Routes>
       </Router>
     </>
