@@ -1,8 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
-import { useContext } from "react";
-import { AllItemsContext } from "./AllItemsContext";
 
 const Header = () => {
   // const { setDropdownSelection } = useContext(AllItemsContext);
@@ -16,7 +14,6 @@ const Header = () => {
     <>
       <Wrapper>
         <Company to="/">BodyBreak</Company>
-        {/* <HomeButton onClick={() => nav("/")}>Homepage</HomeButton> */}
         <SearchBar placeholder="Search for..."></SearchBar>
         <IconDiv>
           <RiShoppingCartFill style={{ color: "#04d9ff" }} />
@@ -59,7 +56,7 @@ const Company = styled(Link)`
   font-size: 30px;
   color: white;
   text-decoration: none;
-`
+`;
 
 const SigninButton = styled.button`
   border: 1px solid;

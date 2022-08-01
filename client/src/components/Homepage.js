@@ -3,16 +3,25 @@ import Header from "./Header";
 import Banner from "./Banner";
 import { useContext } from "react";
 import { AllItemsContext } from "./AllItemsContext";
-import { BiCart } from "react-icons/bi";
+import { RiShoppingCartFill } from "react-icons/ri";
+import { CardConext } from "./CardContext";
 
 const Homepage = () => {
   const { items } = useContext(AllItemsContext);
+  // const {
+  //   actions: { add_Item },
+  // } = useContext(CardConext);
 
+  // Mapping through items for all of the items data then while loop to push a randomly suggested 24 items each time you load homepage.
   const suggestions = [];
   const suggested = items.map((item) => item);
   while (suggestions.length < 24) {
     suggestions.push(suggested[Math.floor(Math.random() * suggested.length)]);
   }
+
+  const cartHandler = (_id) => {
+    // add_Item({ qty: 1, item_id: _id });
+  };
 
   return (
     <>
@@ -45,9 +54,12 @@ const Homepage = () => {
                       {suggestion.numInStock}
                     </NumInStock>
                     {suggestion.numInStock > 0 ? (
-                      <AddToCart disabled={false}>
+                      <AddToCart
+                        disabled={false}
+                        onClick={() => cartHandler(suggestion._id)}
+                      >
                         <CartSpan>Add To Cart</CartSpan>
-                        <BiCart />
+                        <RiShoppingCartFill />
                       </AddToCart>
                     ) : (
                       <OutOfStock>
@@ -155,5 +167,4 @@ const OutOfStock = styled.div`
 const StyledP = styled.p`
   font-size: 14px;
 `;
-
 export default Homepage;
