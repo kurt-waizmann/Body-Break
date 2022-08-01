@@ -1,28 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BiCart } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useContext } from "react";
-import { BrandContext } from "./BrandContext";
+import { RiShoppingCartFill } from "react-icons/ri";
+import { useContext } from "react";
+import { CardConext } from "./CardContext";
 import { v4 as uuidv4, v4 } from "uuid";
 
 const ProductComponent = (item) => {
-  //   const { brands } = useContext(BrandContext);
-  //   const [brand, setBrand] = useState(null);
-  //   const [brandStatus, setBrandStatus] = useState("");
-  let nav = useNavigate();
-  // console.log("item", item.item.companyInfo.name);
-  // console.log("brand", brand)
-  //   console.log("companyId", item.item.companyId);
-  // console.log(item.item.price)
-  //   console.log(typeof brands)
+  const [quantity, setQuantity] = useState(null);
+  const {
+    actions: { add_Item },
+  } = useContext(CardConext);
 
-  //POST to add item to cart
-  useEffect(() => {}, []);
+  const cartHandler = (id) => {
+    add_Item({ qty: quantity, item_id: id });
+    console.log(quantity, id);
+  };
 
-  const onClick = () => {};
-
-  //   console.log(item);
+  const submitFunc = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+  };
+  
   return (
     <>
       <Wrapper key={v4()}>
@@ -46,10 +44,25 @@ const ProductComponent = (item) => {
             {item.item.numInStock}
           </NumInStock>
           {item.item.numInStock > 0 ? (
-            <AddToCart>
-              <CartSpan>Add To Cart</CartSpan>
-              <BiCart></BiCart>
-            </AddToCart>
+            <>
+              <AddToCart
+                disabled={false}
+                onClick={() => cartHandler(item.item._id)}
+              >
+                <CartSpan>Add To Cart</CartSpan>
+                <RiShoppingCartFill />
+              </AddToCart>
+              <Quantity>
+                Quantity:
+                <NumberInput
+                  type="number"
+                  value={quantity}
+                  min={1}
+                  max={item.item.numInStock}
+                  onChange={(e) => submitFunc(e)}
+                ></NumberInput>
+              </Quantity>
+            </>
           ) : (
             <OutOfStock>
               <StyledP>Item is temporarily</StyledP>
@@ -126,4 +139,16 @@ const OutOfStock = styled.div`
 const StyledP = styled.p`
   font-size: 14px;
 `;
+const Quantity = styled.form`
+  display: flex;
+  align-items: center;
+  background: #605d5d;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  width: fit-content;
+  cursor: pointer;
+`;
+const NumberInput = styled.input``;
 export default ProductComponent;
