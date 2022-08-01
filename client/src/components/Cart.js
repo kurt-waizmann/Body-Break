@@ -5,7 +5,6 @@ import Header from "./Header";
 
 const Cart = () => {
 
-
 return (
     <div>
         <Header />
