@@ -18,9 +18,11 @@ const Header = () => {
         <Company to="/">BodyBreak</Company>
         {/* <HomeButton onClick={() => nav("/")}>Homepage</HomeButton> */}
         <SearchBar placeholder="Search for..."></SearchBar>
-        <IconDiv>
-          <RiShoppingCartFill style={{ color: "#04d9ff" }} />
-        </IconDiv>
+        <Link to="/cart">
+          <IconDiv>
+            <RiShoppingCartFill style={{ color: "#04d9ff" }} />
+          </IconDiv>
+        </Link>
         <SigninButton>Sign-in</SigninButton>
       </Wrapper>
       <Nav>
