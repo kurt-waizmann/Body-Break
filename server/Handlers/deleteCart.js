@@ -32,9 +32,7 @@ const deleteCart = async (req, res) => {
         console.log("disconnected!");
     }
 
-
-
 }
 
-
 module.exports = { deleteCart };
+
