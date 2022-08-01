@@ -15,11 +15,6 @@ const AllItems = () => {
           {items.map((item, key) => {
             return (
               <ProductComponent item={item} />
-              // <Items key={key}>
-              //   <Imgs src={item.imageSrc} />
-              //   <Price>Price{item.price}</Price>
-              //   <div>{item.numInStock} Available</div>
-              // </Items>
             );
           })}
         </Container>
