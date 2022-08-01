@@ -12,10 +12,8 @@ const AllItems = () => {
         <Header />
         <Title>All Products</Title>
         <Container>
-          {items.map((item, key) => {
-            return (
-              <ProductComponent item={item} />
-            );
+          {items.map((item, index) => {
+            return <ProductComponent key={index} item={item} />;
           })}
         </Container>
       </Wrapper>
@@ -47,16 +45,16 @@ const Container = styled.div`
   color: white;
 `;
 
-const Items = styled.div``;
+// const Items = styled.div``;
 
-const Imgs = styled.img`
-  height: 120px;
-  width: 120px;
-`;
+// const Imgs = styled.img`
+//   height: 120px;
+//   width: 120px;
+// `;
 
-const Price = styled.div`
-  padding: 6px 0px;
-  width: 50px;
-`;
+// const Price = styled.div`
+//   padding: 6px 0px;
+//   width: 50px;
+// `;
 
 export default AllItems;

@@ -8,17 +8,17 @@ export const BrandContextProvider = ({ children }) => {
   // console.log(brands)
 
   useEffect(() => {
-    const fetchFunc = async () => {
-      try {
-        const res = await fetch("/api/companies");
-        const data = await res.json();
-        setBrands(data.data);
-        setBrandsStatus("Idle");
-      } catch (err) {
-        setBrandsStatus("Error");
-      }
-    };
-    fetchFunc();
+    // const fetchFunc = async () => {
+    //   try {
+    //     const res = await fetch("/api/companies");
+    //     const data = await res.json();
+    //     setBrands(data.data);
+    //     setBrandsStatus("Idle");
+    //   } catch (err) {
+    //     setBrandsStatus("Error");
+    //   }
+    // };
+    // fetchFunc();
   }, []);
 
   if (setBrandsStatus === "Error") {

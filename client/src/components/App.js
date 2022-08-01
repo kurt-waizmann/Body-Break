@@ -16,7 +16,7 @@ const App = () => {
         <GlobalStyles />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/fitness" element={<Fitness />} />
+          <Route exact path="/:fitness" element={<Fitness />} />
           <Route exact path="/medical" element={<Medical />} />
           <Route exact path="/lifestyle" element={<Lifestyle />} />
           <Route exact path="/entertainment" element={<Entertainment />} />

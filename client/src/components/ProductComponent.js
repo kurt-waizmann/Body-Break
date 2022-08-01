@@ -4,53 +4,35 @@ import { BiCart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { BrandContext } from "./BrandContext";
+import { v4 as uuidv4, v4 } from "uuid";
 
 const ProductComponent = (item) => {
-    const {brands} = useContext(BrandContext);
-  const [brand, setBrand] = useState(null);
-  const [brandStatus, setBrandStatus] = useState("");
+  //   const { brands } = useContext(BrandContext);
+  //   const [brand, setBrand] = useState(null);
+  //   const [brandStatus, setBrandStatus] = useState("");
   let nav = useNavigate();
-  //   console.log("item", item);
+  // console.log("item", item.item.companyInfo.name);
   // console.log("brand", brand)
   //   console.log("companyId", item.item.companyId);
   // console.log(item.item.price)
-//   console.log(typeof brands)
+  //   console.log(typeof brands)
 
   //POST to add item to cart
   useEffect(() => {}, []);
 
-  //   GET BRAND NAME BY ID
-
-//     const fetchFunc = async () => {
-//       try {
-//         const res = await fetch(`/api/companies/${item.item.companyId}`);
-//         const data = await res.json();
-//         console.log("fetch", data);
-//         setBrand(data);
-//         setBrandStatus("Idle");
-//       } catch (err) {
-//         setBrandStatus("Error");
-//       }
-//     };
-//     fetchFunc();
-// //     //eslint-disable-next-line
-//   }, []);
-
-
-
-  const handleSubmit = () => {};
+  const onClick = () => {};
 
   //   console.log(item);
   return (
     <>
-      <Wrapper key={item.item._id}>
+      <Wrapper key={v4()}>
         <Imgs src={item.item.imageSrc} alt="item.item image" />
         <ProductInfo>
           <ProductName>{item.item.name}</ProductName>
-          {/* <Brand>
+          <Brand>
             <Span>Brand:</Span>
-            {brand}
-          </Brand> */}
+            {item.item.companyInfo.name}
+          </Brand>
           <Price>
             <Span>Price:</Span>
             {item.item.price}
@@ -64,7 +46,7 @@ const ProductComponent = (item) => {
             {item.item.numInStock}
           </NumInStock>
           {item.item.numInStock > 0 ? (
-            <AddToCart disabled={false}>
+            <AddToCart>
               <CartSpan>Add To Cart</CartSpan>
               <BiCart></BiCart>
             </AddToCart>
