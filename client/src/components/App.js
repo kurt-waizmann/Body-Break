@@ -8,6 +8,7 @@ import Medical from "./Medical";
 import AllItems from "./AllItems";
 import AllBrands from "./AllBrands";
 import AllCategories from "./AllCategories";
+import Cart from "./Cart";
 
 const App = () => {
   return (
@@ -17,12 +18,13 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/:fitness" element={<Fitness />} />
-          <Route exact path="/medical" element={<Medical />} />
-          <Route exact path="/lifestyle" element={<Lifestyle />} />
-          <Route exact path="/entertainment" element={<Entertainment />} />
+          <Route exact path="/:medical" element={<Medical />} />
+          <Route exact path="/:lifestyle" element={<Lifestyle />} />
+          <Route exact path="/:entertainment" element={<Entertainment />} />
           <Route exact path="/allitems" element={<AllItems />} />
           <Route exact path="/allcategories" element={<AllCategories />} />
           <Route exact path="/allbrands" element={<AllBrands />} />
+          <Route exact path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </>
