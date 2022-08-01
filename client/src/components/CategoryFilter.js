@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
-import { AllItemsContext } from './AllItemsContext'
-
+import React, { useContext } from "react";
+import { AllItemsContext } from "./AllItemsContext";
 
 const CategoryFilter = (params) => {
-const {items} =useContext(AllItemsContext);
-const category = items.filter((item) => {
+  const { items } = useContext(AllItemsContext);
+  const category = items.filter((item) => {
+    // console.log("Filter", item);
     return item.category.toLowerCase() === params.toLowerCase();
-    // console.log(item)
-})
-  return category
-}
+  });
+  return category;
+};
 
-export default CategoryFilter
+export default CategoryFilter;
