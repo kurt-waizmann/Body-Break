@@ -3,6 +3,7 @@ export const getDataFromServer = async (Endpoint) => {
     return fetch(Endpoint)
       .then((res) => res.json())
       .then((res) => {
+        console.log(res)
         if (res.status === 200) return res.data;
         else return null;
       });

@@ -1,10 +1,19 @@
 import styled from "styled-components";
-
 import Header from "./Header";
+import { useContext, useEffect } from "react";
+import { CardConext } from "./CardContext";
 
 
 const Cart = () => {
+    const {state, actions:{get_Items}} = useContext(CardConext)
 
+
+    useEffect (() => {
+        get_Items();
+        // console.log("useEffect", state.cardList)
+    },[])
+
+    // state.cardList
     return (
         <>
         <Wrapper>
@@ -12,7 +21,7 @@ const Cart = () => {
             <InnerWrap>
                 <Summary>
                     <Title>Shopping Cart</Title>
-                    <div>items go here...</div>
+                    {state.cardList?.length && <div>{state.cardList.name}</div>}
                     <Button>Complete Order</Button>
                 </Summary>
             </InnerWrap>
