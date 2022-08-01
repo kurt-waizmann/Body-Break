@@ -63,7 +63,7 @@ button {
   text-align: center;
 }
 p {
-  font-family: roboto, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 100;
   font-size: 10px;
 }
@@ -71,7 +71,7 @@ a,
 li,
 blockquote,
 input {
-  font-family: roboto, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 100;
 }
   #root{
