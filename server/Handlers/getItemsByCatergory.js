@@ -16,7 +16,7 @@ const getItemsByCatergory = async (req, res) => {
         },
         {
         $match:{
-          $and:[{"category" : req.params.category}]
+          $and:[{"category" : { "$regex" : req.params.category , "$options" : "i"}}]
           }
         },
         {   
