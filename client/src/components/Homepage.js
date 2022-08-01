@@ -30,6 +30,7 @@ const Homepage = () => {
                     <ProductName>{suggestion.name}</ProductName>
                     <Brand>
                       <Span>Brand:</Span>
+                      {suggestion.companyInfo.name}
                     </Brand>
                     <Price>
                       <Span>Price:</Span>

@@ -15,6 +15,7 @@ const getAllItems = async (req, res) => {
           as: 'companyInfo'
           }
         },
+        {$unwind:"$companyInfo"},
        {   
         $project:{
           _id : 1,
