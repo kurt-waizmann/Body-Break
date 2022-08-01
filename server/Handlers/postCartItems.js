@@ -24,8 +24,6 @@ const postCartItems = async (req, res) => {
                 }else return {status: false}
 
             });
-            console.log('---------------sd------------------');
-            console.log(result)
             result.status 
              ? res.status(200).json({status:200, data:result})
              : res.status(400).json({status:400, Message:"item didnt insert into db"})
