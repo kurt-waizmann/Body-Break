@@ -32,8 +32,6 @@ const getCartDetails = async (req, res) => {
         const db = await client.db(dbName);
         const cartDetails = await
         db.collection('cart').aggregate(query).toArray();
-        console.log('---------------sd------------------');
-        console.log(cartDetails.length !== 0);
         cartDetails.length !== 0
         ? res.status(200).json({status:200, data: cartDetails})
         : res.status(400).json({status:400, Message: "cart is empty"})
