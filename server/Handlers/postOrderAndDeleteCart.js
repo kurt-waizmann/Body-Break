@@ -8,6 +8,7 @@ const postOrderAndDeleteCart = async (req, res) => {
     // data format
     const data = {
         _id: req.body._id,
+        creditCard: req.body.creditCard,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         address: req.body.address,
