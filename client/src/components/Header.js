@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { useContext } from "react";
@@ -15,12 +15,13 @@ const Header = () => {
   return (
     <>
       <Wrapper>
-        <HomeButton onClick={() => nav("/")}>Homepage</HomeButton>
+        <Company to="/">BodyBreak</Company>
+        {/* <HomeButton onClick={() => nav("/")}>Homepage</HomeButton> */}
         <SearchBar placeholder="Search for..."></SearchBar>
-        <SigninButton>Sign-in</SigninButton>
         <IconDiv>
           <RiShoppingCartFill style={{ color: "#04d9ff" }} />
         </IconDiv>
+        <SigninButton>Sign-in</SigninButton>
       </Wrapper>
       <Nav>
         <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
@@ -49,25 +50,36 @@ const Wrapper = styled.div`
   gap: 12px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  height: 50px;
+  padding: 0 70px 0 70px;
 `;
 
+const Company = styled(Link)`
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+`
+
 const SigninButton = styled.button`
+  border: 1px solid;
   border-color: #04d9ff;
   background-color: black;
   color: #04d9ff;
   margin-right: 20px;
   border-radius: 5px;
+  width: 100px;
   height: 30px;
   font-weight: bold;
-  text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
+  /* text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff; */
   font-family: "Poppins", sans-serif;
   :before {
     pointer-events: none;
     content: "";
     position: absolute;
     background: #04d9ff;
-    top: 5%;
+    top: 15%;
     left: 72%;
     right: 0;
     height: 20px;
@@ -80,26 +92,27 @@ const SigninButton = styled.button`
     color: black;
     background-color: #04d9ff;
     transition-timing-function: ease-in-out;
-    transition-duration: 600ms;
+    transition-duration: 400ms;
   }
 `;
 
 const HomeButton = styled.button`
+  border: 1px solid;
   border-color: #04d9ff;
   background-color: black;
   color: #04d9ff;
   border-radius: 5px;
   height: 30px;
   font-weight: bold;
-  text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
+  /* text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff; */
   font-family: "Poppins", sans-serif;
   :before {
     pointer-events: none;
     content: "";
     position: absolute;
     background: #04d9ff;
-    top: 5%;
+    top: 15%;
     left: 24.8%;
     right: 0;
     height: 20px;
@@ -117,11 +130,15 @@ const HomeButton = styled.button`
 `;
 
 const SearchBar = styled.input`
+  border: none;
   border-radius: 5px;
   height: 28px;
   width: 800px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  background-color: #313131;
+  color: white;
+  padding-left: 15px;
 `;
 
 const IconDiv = styled.div`
@@ -134,6 +151,9 @@ const Dropdown = styled.select`
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  border: none;
+  background-color: #313131;
+  color: white;
   :hover {
     text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
     box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
@@ -145,10 +165,11 @@ const Dropdown = styled.select`
 const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
-  margin-top: 30px;
+  margin-top: 10px;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+  color: #878787;
 `;
 
 const Categories = styled.div`
