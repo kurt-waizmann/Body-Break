@@ -6,7 +6,7 @@ export const AllItemsProvider = ({ children }) => {
   const [items, setItems] = useState(null);
   const [itemsStatus, setItemsStatus] = useState("Loading");
   const [dropdownSelection, setDropdownSelection] = useState(null);
-
+  // Context/fetch for getting all of our items via db(database)
   useEffect(() => {
     const fetchFunc = async () => {
       try {
