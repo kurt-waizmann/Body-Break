@@ -8,10 +8,9 @@ const { getCartDetails } = require('./handlers/getCartDetails')
 const { getOrderDetails } = require('./handlers/getOrderDetails')
 const { getSuggestedItems } = require('./handlers/getSuggestedItems')
 const { postCartItems } = require('./handlers/postCartItems')
-const { postOrderDetails } = require('./handlers/postOrderDetails')
+const { postOrderAndDeleteCart } = require('./handlers/postOrderAndDeleteCart')
 const { updateCart } = require('./handlers/updateCart')
 const { updateStock } = require('./handlers/updateStock')
-const { deleteCart } = require('./handlers/deleteCart');
 const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
 
 
@@ -68,7 +67,7 @@ express()
 // POST ENDPOINTS // 
 
   // post order after completed purchase
-  .post("/api/order/details", postOrderDetails)
+  .post("/api/order/details", postOrderAndDeleteCart)
 
   // post items into the cart
   .post("/api/cart/details", postCartItems)
@@ -83,16 +82,6 @@ express()
 
   // update stock after item(s) are purchased
   .patch("/api/items/update", updateStock)
-
-
-
-
-// DELETE ENDPOINTS //
-
-  //remove all items in cart
-  .delete("/api/cart/delete", deleteCart)
-
-
 
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
