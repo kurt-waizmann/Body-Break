@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+  console.log("action", action)
   switch (action.type) {
     case "Add_Item_To_Card": {
       return { ...state, cardList: [...action.items] };
@@ -25,6 +26,7 @@ export const CardConext = createContext(null);
 
 export const CardProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("state", state)
   // this function use for add item into the card
   const add_Item = async (item) => {
     const addItem = await sentDataToServer("/api/cart/details", "Post", {
@@ -49,6 +51,7 @@ export const CardProvider = ({ children }) => {
   // this function use for Update item qty in the card
   const get_Items = async () => {
     const result = await getDataFromServer("/api/cart/details");
+    console.log("1", result)
     dispatch({
       type: "Get_Items_From_Card",
       items: result,
