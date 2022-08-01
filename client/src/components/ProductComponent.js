@@ -20,7 +20,7 @@ const ProductComponent = (item) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
-  
+  //   console.log(quantity);
   return (
     <>
       <Wrapper key={v4()}>
@@ -77,6 +77,7 @@ const ProductComponent = (item) => {
 
 const Wrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   width: 180px;
@@ -111,9 +112,11 @@ const NumInStock = styled.p`
 `;
 const AddToCart = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   background: #605d5d;
   text-decoration: none;
+  width: 100%;
   border: none;
   border-radius: 4px;
   margin-top: 20px;
@@ -134,21 +137,30 @@ const OutOfStock = styled.div`
   text-decoration: none;
   border: none;
   border-radius: 4px;
-  margin-top: 20px;
+  padding: 5px;
+  margin-top: 50px;
 `;
 const StyledP = styled.p`
   font-size: 14px;
 `;
 const Quantity = styled.form`
   display: flex;
+  font-size: 14px;
+  justify-content: space-between;
   align-items: center;
   background: #605d5d;
   text-decoration: none;
   border: none;
   border-radius: 4px;
-  margin-top: 20px;
-  width: fit-content;
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  padding: 10px;
   cursor: pointer;
 `;
-const NumberInput = styled.input``;
+const NumberInput = styled.input`
+  width: 50px;
+  border-radius: 4px;
+  border: none;
+`;
 export default ProductComponent;

@@ -65,7 +65,7 @@ button {
 p {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
-  font-size: 10px;
+  font-size: 12px;
 }
 a,
 li,

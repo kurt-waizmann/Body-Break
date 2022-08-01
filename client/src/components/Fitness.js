@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import CategoryFetch from "./CategoryFetch";
-import CategoryFilter from "./CategoryFilter";
 import Header from "./Header";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import ProductComponent from "./ProductComponent";
 import { v4 as uuidv4, v4 } from "uuid";
 import { AllItemsContext } from "./AllItemsContext";
+import ProductComponent from "./ProductComponent";
+import CategoryFilter from "./CategoryFilter";
+import Footer from "./Footer";
 
 const Fitness = () => {
   const { items } = useContext(AllItemsContext);
@@ -50,7 +50,6 @@ const Container = styled.div`
   display: flex;
   flex-flow: wrap;
   justify-content: center;
-  margin: 10px;
   gap: 20px;
   color: white;
 `;
