@@ -11,19 +11,20 @@ import { AllItemsContext } from "./AllItemsContext";
 const Fitness = () => {
   const { items } = useContext(AllItemsContext);
   //Get category from params
-  const { fitness } = useParams();
+  const { category } = useParams();
+  // console.log("params", category);
   //use params to filter items from category
-  const category = CategoryFilter(fitness);
+  const categoryItems = CategoryFilter(category);
 
   return (
     <>
       <Wrapper>
         <Header />
-        <Title>Fitness</Title>
+        <Title>{category}</Title>
         <Container>
-          {category?.length > 0 &&
-            category.map((item) => {
-              return <ProductComponent item={item}/>
+          {categoryItems?.length > 0 &&
+            categoryItems.map((item) => {
+              return <ProductComponent item={item} />;
             })}
         </Container>
       </Wrapper>
@@ -43,6 +44,7 @@ const Title = styled.div`
   font-size: x-large;
   padding: 30px;
   text-decoration: underline;
+  text-transform: capitalize;
 `;
 const Container = styled.div`
   display: flex;
@@ -51,9 +53,5 @@ const Container = styled.div`
   margin: 10px;
   gap: 20px;
   color: white;
-`;
-const Divider = styled.div`
-  border: 2px solid white;
-  width: auto;
 `;
 export default Fitness;

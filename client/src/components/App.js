@@ -17,10 +17,7 @@ const App = () => {
         <GlobalStyles />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/:fitness" element={<Fitness />} />
-          <Route exact path="/:medical" element={<Medical />} />
-          <Route exact path="/:lifestyle" element={<Lifestyle />} />
-          <Route exact path="/:entertainment" element={<Entertainment />} />
+          <Route exact path="/:category" element={<Fitness />} />
           <Route exact path="/allitems" element={<AllItems />} />
           <Route exact path="/allcategories" element={<AllCategories />} />
           <Route exact path="/allbrands" element={<AllBrands />} />
@@ -32,4 +29,3 @@ const App = () => {
 };
 
 export default App;
-
