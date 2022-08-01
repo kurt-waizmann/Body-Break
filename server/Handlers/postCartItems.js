@@ -10,7 +10,7 @@ const postCartItems = async (req, res) => {
         await client.connect();
         const db = client.db(dbName);
         const result = await
-            db.collection('card')
+            db.collection('cart')
             .insertOne(
                 {
                   item_id: item_id,
