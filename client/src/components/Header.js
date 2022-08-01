@@ -7,7 +7,7 @@ import { AllItemsContext } from "./AllItemsContext";
 const Header = () => {
   // const { setDropdownSelection } = useContext(AllItemsContext);
   const nav = useNavigate();
-
+  // Handler for our Dropdown/select
   const handleChange = (value) => {
     nav(value);
   };
