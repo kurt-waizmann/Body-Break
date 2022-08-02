@@ -13,11 +13,11 @@ const Homepage = () => {
 
   // Mapping through items for all of the items data then while loop to push a randomly suggested 24 items each time you load homepage.
   useEffect(() => {
-    const suggested = items.map((item) => item);
-    while (suggestions.length < 24) {
-      suggestions.push(suggested[Math.floor(Math.random() * suggested.length)]);
+    const suggested = [];
+    while (suggested.length < 24) {
+      suggested.push(items[Math.floor(Math.random() * items.length)]);
     }
-    setSuggestions(suggestions);
+    setSuggestions(suggested);
   }, []);
 
   return (
