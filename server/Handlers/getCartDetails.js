@@ -24,6 +24,7 @@ const getCartDetails = async (req, res) => {
         category: "$itemInfo.category",
         imageSrc: "$itemInfo.imageSrc",
         companyId: "$itemInfo.companyId",
+        numInStock: "$itemInfo.numInStock"
       },
     },
   ];
