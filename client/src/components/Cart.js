@@ -10,7 +10,7 @@ const Cart = () => {
 
     useEffect (() => {
         get_Items();
-        // console.log("useEffect", state.cardList)
+        console.log("useEffect", state.cardList)
     },[])
 
     // state.cardList
@@ -21,7 +21,18 @@ const Cart = () => {
             <InnerWrap>
                 <Summary>
                     <Title>Shopping Cart</Title>
-                    {state.cardList?.length && <div>{state.cardList.name}</div>}
+                    {state.cardList?.length &&
+                     <div>{state.cardList.map(item => {
+                        return (
+                            <>
+                                <div>{item.name}</div>
+                                <div>{item.price}</div>
+                                <div>{item.qty}</div>
+
+
+                            </>
+                        )
+                     })}</div>}
                     <Button>Complete Order</Button>
                 </Summary>
             </InnerWrap>
