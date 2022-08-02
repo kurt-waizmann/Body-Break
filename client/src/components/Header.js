@@ -32,7 +32,9 @@ const Header = () => {
           <option value="/allbrands">All Brands</option>
         </Dropdown>
         <Categories onClick={() => nav("/fitness")}>Fitness</Categories>
-        <Categories onClick={() => nav("/medical")}>Medical</Categories>
+        <Categories onClick={() => nav("/medical")}>
+          Health and Wellness
+        </Categories>
         <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
         <Categories onClick={() => nav("/entertainment")}>
           Entertainment

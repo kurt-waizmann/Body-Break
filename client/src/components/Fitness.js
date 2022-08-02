@@ -6,7 +6,7 @@ import { v4 as uuidv4, v4 } from "uuid";
 import { AllItemsContext } from "./AllItemsContext";
 import ProductComponent from "./ProductComponent";
 import CategoryFilter from "./CategoryFilter";
-import Footer from "./Footer";
+import CategoryBanner from "./CategoryBanner";
 
 const Fitness = () => {
   const { items } = useContext(AllItemsContext);
@@ -21,7 +21,8 @@ const Fitness = () => {
     <>
       <Wrapper>
         <Header />
-        <Title>{category}</Title>
+        {/* <Title>{category}</Title> */}
+        <CategoryBanner category={category}/>
         <Container>
           {categoryItems?.length > 0 &&
             categoryItems.map((item) => {
