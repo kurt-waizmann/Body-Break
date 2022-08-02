@@ -50,7 +50,7 @@ export const CardProvider = ({ children }) => {
   const delete_Item = async (_id) => {
     const deleteItem = await sentDataToServer(
       `/api/cart/deleteItem/${_id}`,
-      "delete"
+      "DELETE"
     );
     if (deleteItem) {
       const data = await getDataFromServer("/api/cart/details");

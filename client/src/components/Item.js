@@ -145,6 +145,7 @@ const AddToCart = styled.button`
   border: none;
   border-radius: 4px;
   margin-top: 20px;
+  cursor: pointer;
 `;
 const Span = styled.span`
   margin-right: 5px;

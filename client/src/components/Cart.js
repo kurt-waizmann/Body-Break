@@ -6,48 +6,35 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const [selected, setSelected] = useState(null);
-
   const {
     state,
-    actions: { get_Items, update_item_qty },
+    actions: { get_Items, update_item_qty, delete_Item },
   } = useContext(CardConext);
-  const [quantity, setQuantity] = useState(state.cardList);
-  console.log("hellooo", quantity, state);
+  console.log("hellooo", state.cardList, state);
 
   useEffect(() => {
     get_Items();
     console.log("useEffect", state.cardList);
   }, []);
 
-  useEffect(() => {
-    setQuantity(state.cardList);
-  }, [state]);
+  // useEffect(() => {
+  //   setQuantity(state.cardList);
+  // }, [state]);
 
-  const addFunc = (_id) => {
-    update_item_qty({ _id: _id, inc: 1 });
-    // const arr = quantity.map((x, i) => {
-    //   console.log(x);
-    //   if (i === index) {
-    //     return { ...x, qty: parseInt(x.qty) + 1 };
-    //   }
-    //   return x;
+  const addFunc = (_id, numInStock, qty) => {
+    if (qty < numInStock) update_item_qty({ _id: _id, inc: 1 });
   };
 
-  const subtractFunc = (_id) => {
-    update_item_qty({ _id: _id, inc: -1 });
-    // const arr = quantity.map((x, i) => {
-    //   console.log(x);
-    //   if (i === index) {
-    //     return { ...x, qty: parseInt(x.qty) - 1 };
-    //   }
-    //   return x;
+  const subtractFunc = (_id, qty) => {
+    if (qty > 1) update_item_qty({ _id: _id, inc: -1 });
   };
 
   const nav = useNavigate();
+  const sum = state.cardList.reduce((accumulator, curValue) => {
+    const price = Math.floor(curValue.price.slice(1, curValue.price.length));
+    return accumulator + curValue.qty * price;
+  }, 0);
 
-  console.log(quantity, selected);
-  // state.cardList
   return (
     <>
       <Wrapper>
@@ -57,24 +44,35 @@ const Cart = () => {
             <Title>Shopping Cart</Title>
             {state.cardList?.length && (
               <div>
-                {state.cardList.map((item, index) => {
+                {state.cardList.map((item) => {
                   return (
                     <div key={item.item_id}>
                       <Item>{item.name}</Item>
                       <Price>Price: {item.price}</Price>
                       <Quantity>
                         Quantity: {item.qty}
-                        <Buttons onClick={() => subtractFunc(item._id)}>
+                        <Buttons
+                          onClick={() => subtractFunc(item._id, item.qty)}
+                        >
                           -
                         </Buttons>
-                        <Buttons onClick={() => addFunc(item._id)}>+</Buttons>
-                        <Delete>Delete</Delete>
+                        <Buttons
+                          onClick={() =>
+                            addFunc(item._id, item.numInStock, item.qty)
+                          }
+                        >
+                          +
+                        </Buttons>
+                        <Delete onClick={() => delete_Item(item._id)}>
+                          Delete
+                        </Delete>
                       </Quantity>
                     </div>
                   );
                 })}
               </div>
             )}
+            <div>Subtotal: ${sum}</div>
             <Button onClick={() => nav("/orderform")}>Complete Order</Button>
           </Summary>
         </InnerWrap>
