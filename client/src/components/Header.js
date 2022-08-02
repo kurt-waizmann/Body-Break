@@ -14,10 +14,10 @@ const Header = () => {
     <>
       <Wrapper>
         <Company to="/">BodyBreak</Company>
-        <SearchBar placeholder="Search for..."></SearchBar>
+        <SearchBar placeholder="What are you looking for..."></SearchBar>
         <Link to="/cart">
           <IconDiv>
-            <RiShoppingCartFill style={{ color: "#04d9ff" }} />
+            <RiShoppingCartFill style={{ color: "#02A4D3" }} />
           </IconDiv>
         </Link>
         <SigninButton>Sign-in</SigninButton>
@@ -47,6 +47,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
+  background: #030303;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   height: 50px;
@@ -62,7 +63,8 @@ const Company = styled(Link)`
 
 const SigninButton = styled.button`
   border: 1px solid;
-  border-color: #04d9ff;
+  /* border-color: #04d9ff; */
+  border-color: #02a4d3;
   background-color: black;
   color: #04d9ff;
   margin-right: 20px;
@@ -75,7 +77,8 @@ const SigninButton = styled.button`
     pointer-events: none;
     content: "";
     position: absolute;
-    background: #04d9ff;
+    /* background: #04d9ff; */
+    background: #02a4d3;
     top: 15%;
     left: 72%;
     right: 0;
@@ -87,7 +90,8 @@ const SigninButton = styled.button`
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #04d9ff;
+    /* background-color: #04d9ff; */
+    background-color: #02a4d3;
     transition-timing-function: ease-in-out;
     transition-duration: 450ms;
   }
@@ -119,8 +123,8 @@ const Dropdown = styled.select`
   background-color: #313131;
   color: white;
   :hover {
-    text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-    box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff;
+    text-shadow: 0 0 0.125em #02a4d3 hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+    box-shadow: 0 0 0.5em 0 #02a4d3, inset 0 0 0.5em 0 #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
   }
@@ -129,11 +133,13 @@ const Dropdown = styled.select`
 const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
-  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   color: #878787;
+  background: #141313;
 `;
 
 const Categories = styled.div`
