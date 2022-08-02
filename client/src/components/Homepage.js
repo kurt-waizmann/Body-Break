@@ -47,7 +47,6 @@ const Container = styled.div`
 const Title = styled.div`
   display: flex;
   justify-content: center;
-  cursor: pointer;
   color: #04d9ff;
   font-size: x-large;
   padding: 30px;
