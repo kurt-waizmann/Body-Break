@@ -1,11 +1,12 @@
 import Imgs from "../../src/Imgs/Do-it.png";
+import homepage from "../../src/Imgs/Homepage2.png";
 import styled from "styled-components";
 
 const Banner = () => {
   return (
     <>
       <BannerImg>
-        <Img src={Imgs} />
+        <Img src={homepage} />
       </BannerImg>
     </>
   );
@@ -14,7 +15,9 @@ const Banner = () => {
 const BannerImg = styled.div`
   display: flex;
   justify-content: center;
-  margin-left: 120px;
+  height: 250px;
+  margin-bottom: 0px;
+  margin-top: 20px;
 `;
 
 const Img = styled.img`
