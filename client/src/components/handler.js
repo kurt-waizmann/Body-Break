@@ -32,7 +32,7 @@ export const sentDataToServer = async (
       console.log("-----",Method,"----*------",Endpoint,"-----*-------------");
       console.log("respons is: ", res);
 
-      if (res.status !== 200) {
+      if (res.status > 300) {
         success = false;
         throw window.alert(res.Message);
       } else {

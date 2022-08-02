@@ -16,7 +16,7 @@ const postCartItems = async (req, res) => {
         if(result.modifiedCount === 0){
             let = await db
             .collection('cart')
-            .insertOne({item_id:item_id, qty: qty})
+            .insertOne({item_id:item_id, qty: parseInt(qty)})
         }
 
             result.acknowledged 
