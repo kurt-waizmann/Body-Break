@@ -70,8 +70,6 @@ const SigninButton = styled.button`
   width: 100px;
   height: 30px;
   font-weight: bold;
-  /* text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff; */
   font-family: "Poppins", sans-serif;
   :before {
     pointer-events: none;
@@ -91,40 +89,7 @@ const SigninButton = styled.button`
     color: black;
     background-color: #04d9ff;
     transition-timing-function: ease-in-out;
-    transition-duration: 400ms;
-  }
-`;
-
-const HomeButton = styled.button`
-  border: 1px solid;
-  border-color: #04d9ff;
-  background-color: black;
-  color: #04d9ff;
-  border-radius: 5px;
-  height: 30px;
-  font-weight: bold;
-  /* text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-  box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 0.5em 0 #04d9ff; */
-  font-family: "Poppins", sans-serif;
-  :before {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    background: #04d9ff;
-    top: 15%;
-    left: 24.8%;
-    right: 0;
-    height: 20px;
-    width: 30px;
-    transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
-    filter: blur(1em);
-  }
-  :hover {
-    cursor: pointer;
-    color: black;
-    background-color: #04d9ff;
-    transition-timing-function: ease-in-out;
-    transition-duration: 600ms;
+    transition-duration: 450ms;
   }
 `;
 
@@ -174,12 +139,29 @@ const Nav = styled.nav`
 const Categories = styled.div`
   cursor: pointer;
   padding: 10px;
-  :hover {
+  position: relative;
+  :after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-bottom: 1px solid #04d9ff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 400ms ease-in-out;
+  }
+  :hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  /* :hover {
     text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
     box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 1em 0 #04d9ff;
     transition-timing-function: ease-in-out;
     transition-duration: 600ms;
-  }
+  } */
 `;
 
 export default Header;
