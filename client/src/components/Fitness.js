@@ -15,6 +15,7 @@ const Fitness = () => {
   // console.log("params", category);
   //use params to filter items from category
   const categoryItems = CategoryFilter(category);
+  // console.log(categoryItems)
 
   return (
     <>
@@ -40,10 +41,11 @@ const Wrapper = styled.div`
 const Title = styled.div`
   display: flex;
   justify-content: center;
-  color: #04d9ff;
+  /* color: #04d9ff; */
+  color: #02A4D3;
   font-size: x-large;
   padding: 30px;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   text-transform: capitalize;
 `;
 const Container = styled.div`

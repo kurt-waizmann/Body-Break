@@ -20,7 +20,7 @@ const ProductComponent = (item) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
-  //   console.log(quantity);
+    // console.log("item",item);
   return (
     <>
       <Wrapper key={v4()}>
@@ -44,25 +44,27 @@ const ProductComponent = (item) => {
             {item.item.numInStock}
           </NumInStock>
           {item.item.numInStock > 0 ? (
-            <>
-              <AddToCart
-                disabled={false}
-                onClick={() => cartHandler(item.item._id)}
-              >
-                <CartSpan>Add To Cart</CartSpan>
-                <RiShoppingCartFill />
-              </AddToCart>
-              <Quantity>
-                Quantity:
-                <NumberInput
-                  type="number"
-                  value={quantity}
-                  min={1}
-                  max={item.item.numInStock}
-                  onChange={(e) => submitFunc(e)}
-                ></NumberInput>
-              </Quantity>
-            </>
+            <CartWrapper>
+              <>
+                <AddToCart
+                  disabled={false}
+                  onClick={() => cartHandler(item.item._id)}
+                >
+                  <CartSpan>Add To Cart</CartSpan>
+                  <RiShoppingCartFill />
+                </AddToCart>
+                <Quantity>
+                  <label>Quantity:</label>
+                  <NumberInput
+                    type="number"
+                    value={quantity}
+                    min={1}
+                    max={item.item.numInStock}
+                    onChange={(e) => submitFunc(e)}
+                  ></NumberInput>
+                </Quantity>
+              </>
+            </CartWrapper>
           ) : (
             <OutOfStock>
               <StyledP>Item is temporarily</StyledP>
@@ -81,6 +83,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 180px;
+  height: 370px;
   background-color: #333131;
   border-radius: 4px;
   padding: 15px;
@@ -110,6 +113,11 @@ const BodyLocation = styled.p`
 const NumInStock = styled.p`
   margin: 0px 0px 5px 0px;
 `;
+const CartWrapper = styled.div`
+  width: 83%;
+  position: absolute;
+  bottom: 20px;
+`;
 const AddToCart = styled.button`
   display: flex;
   justify-content: center;
@@ -130,6 +138,9 @@ const CartSpan = styled.span`
 `;
 const OutOfStock = styled.div`
   display: flex;
+  width: 83%;
+  position: absolute;
+  bottom: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -138,7 +149,7 @@ const OutOfStock = styled.div`
   border: none;
   border-radius: 4px;
   padding: 5px;
-  margin-top: 50px;
+  /* margin-top: 30px; */
 `;
 const StyledP = styled.p`
   font-size: 14px;
@@ -158,8 +169,10 @@ const Quantity = styled.form`
   padding: 10px;
   cursor: pointer;
 `;
+
 const NumberInput = styled.input`
-  width: 50px;
+  /* width: 50px; */
+  /* height: 40px; */
   border-radius: 4px;
   border: none;
 `;

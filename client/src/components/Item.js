@@ -43,24 +43,26 @@ const Item = ({ suggestion }) => {
           {suggestion.numInStock}
         </NumInStock>
         {suggestion.numInStock > 0 ? (
-          <>
-            <AddToCart
-              disabled={false}
-              onClick={() => cartHandler(suggestion._id)}
-            >
-              <CartSpan>Add To Cart</CartSpan>
-              <RiShoppingCartFill />
-            </AddToCart>
-            <Quantity>
-              Quantity:
-              <input
-                type="number"
-                min={1}
-                max={suggestion.numInStock}
-                onChange={(e) => submitFunc(e)}
-              ></input>
-            </Quantity>
-          </>
+          <CartWrapper>
+            <>
+              <AddToCart
+                disabled={false}
+                onClick={() => cartHandler(suggestion._id)}
+              >
+                <CartSpan>Add To Cart</CartSpan>
+                <RiShoppingCartFill />
+              </AddToCart>
+              <Quantity>
+                Quantity:
+                <NumberInput
+                  type="number"
+                  min={1}
+                  max={suggestion.numInStock}
+                  onChange={(e) => submitFunc(e)}
+                ></NumberInput>
+              </Quantity>
+            </>
+          </CartWrapper>
         ) : (
           <OutOfStock>
             <StyledP>Item is temporarily</StyledP>
@@ -71,12 +73,23 @@ const Item = ({ suggestion }) => {
     </Wrapper>
   );
 };
-
+//OLD CODE
+// const Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 180px;
+//   background-color: #333131;
+//   border-radius: 4px;
+//   padding: 15px;
+// `;
 const Wrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   width: 180px;
+  height: 370px;
   background-color: #333131;
   border-radius: 4px;
   padding: 15px;
@@ -106,15 +119,32 @@ const BodyLocation = styled.p`
 const NumInStock = styled.p`
   margin: 0px 0px 5px 0px;
 `;
+const CartWrapper = styled.div`
+  width: 83%;
+  position: absolute;
+  bottom: 20px;
+`;
+//OLD CODE
+// const AddToCart = styled.button`
+//   display: flex;
+//   align-items: center;
+//   background: #605d5d;
+//   text-decoration: none;
+//   border: none;
+//   border-radius: 4px;
+//   margin-top: 20px;
+//   cursor: pointer;
+// `;
 const AddToCart = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   background: #605d5d;
   text-decoration: none;
+  width: 100%;
   border: none;
   border-radius: 4px;
   margin-top: 20px;
-  cursor: pointer;
 `;
 const Span = styled.span`
   margin-right: 5px;
@@ -125,6 +155,9 @@ const CartSpan = styled.span`
 `;
 const OutOfStock = styled.div`
   display: flex;
+  width: 83%;
+  position: absolute;
+  bottom: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -138,17 +171,37 @@ const OutOfStock = styled.div`
 const StyledP = styled.p`
   font-size: 14px;
 `;
-
+//OLD CODE
+// const Quantity = styled.form`
+//   display: flex;
+//   align-items: center;
+//   background: #605d5d;
+//   text-decoration: none;
+//   border: none;
+//   border-radius: 4px;
+//   margin-top: 20px;
+//   width: fit-content;
+//   cursor: pointer;
+// `;
 const Quantity = styled.form`
   display: flex;
+  font-size: 14px;
+  justify-content: space-between;
   align-items: center;
   background: #605d5d;
   text-decoration: none;
   border: none;
   border-radius: 4px;
-  margin-top: 20px;
-  width: fit-content;
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  padding: 10px;
   cursor: pointer;
 `;
-
+const NumberInput = styled.input`
+  /* width: 50px; */
+  /* height: 40px; */
+  border-radius: 4px;
+  border: none;
+`;
 export default Item;
