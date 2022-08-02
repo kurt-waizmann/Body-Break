@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import LoadingPage from "./LoadingPage";
 
 export const AllItemsContext = createContext();
 
@@ -26,7 +27,7 @@ export const AllItemsProvider = ({ children }) => {
   }
 
   if (items === null) {
-    return <>Loading</>;
+    return <LoadingPage/>;
   }
 
   return (

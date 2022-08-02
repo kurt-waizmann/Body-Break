@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import LoadingPage from "./LoadingPage";
 
 const CategoryFetch = (category) => {
   const [categoryData, setCategoryData] = useState(null);
@@ -22,7 +23,7 @@ const CategoryFetch = (category) => {
 //   }
 
   if (categoryData === null) {
-    return <>Loading</>;
+    return <LoadingPage />;
   }
 
   return categoryData;
