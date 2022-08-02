@@ -25,7 +25,7 @@ const Homepage = () => {
       <Container>
         <div>
           <Header />
-          <Title>BodyBreak</Title>
+          {/* <Title>BodyBreak</Title> */}
           <Banner />
           <ImgDiv>
             {suggestions.map((suggestion, key) => (
@@ -58,7 +58,7 @@ const ImgDiv = styled.div`
   justify-content: center;
   gap: 50px;
   color: white;
-  padding-top: 50px;
+  padding-top: 20px;
   padding-bottom: 50px;
 `;
 

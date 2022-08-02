@@ -1,6 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
+import { FiActivity } from "react-icons/fi";
+import { GiHealthNormal } from "react-icons/gi";
+import { FaHiking, FaIcons } from "react-icons/fa";
 
 const Header = () => {
   // const { setDropdownSelection } = useContext(AllItemsContext);
@@ -31,19 +34,56 @@ const Header = () => {
           <option value="/allcategories">All Catagories</option>
           <option value="/allbrands">All Brands</option>
         </Dropdown>
-        <Categories onClick={() => nav("/fitness")}>Fitness</Categories>
-        <Categories onClick={() => nav("/medical")}>
-          Health and Wellness
-        </Categories>
-        <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
-        <Categories onClick={() => nav("/entertainment")}>
-          Entertainment
-        </Categories>
+        <Icon>
+          <Categories onClick={() => nav("/fitness")}>Fitness </Categories>
+          <FiActivity style={{ marginLeft: "10px" }} />
+        </Icon>
+        <Icon>
+          <Categories onClick={() => nav("/medical")}>
+            Health and Wellness
+          </Categories>
+          <GiHealthNormal style={{ marginLeft: "10px" }} />
+        </Icon>
+        <Icon>
+          <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
+          <FaHiking style={{ marginLeft: "10px" }} />
+        </Icon>
+        <Icon>
+          <Categories onClick={() => nav("/entertainment")}>
+            Entertainment
+          </Categories>
+          <FaIcons style={{ marginLeft: "10px" }} />
+        </Icon>
       </Nav>
     </>
   );
 };
 
+const Icon = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-right: 10px; */
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  :after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-bottom: 1px solid #04d9ff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 400ms ease-in-out;
+  }
+  :hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+`;
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -145,7 +185,7 @@ const Nav = styled.nav`
 `;
 
 const Categories = styled.div`
-  cursor: pointer;
+  /* cursor: pointer;
   padding: 10px;
   position: relative;
   :after {
@@ -163,7 +203,7 @@ const Categories = styled.div`
   :hover::after {
     transform: scaleX(1);
     transform-origin: left;
-  }
+  } */
   /* :hover {
     text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
     box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 1em 0 #04d9ff;
