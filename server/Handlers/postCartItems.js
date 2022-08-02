@@ -9,22 +9,17 @@ const postCartItems = async (req, res) => {
     try {
         await client.connect();
         const db = client.db(dbName);
-        const result = await
+        let result = await
             db.collection('cart')
-            .insertOne(
-                {
-                  item_id: item_id,
-                  qty: qty,
-                })
-            .then(async (res) => {
-                if (res.acknowledged){
-                    await db.collection("items")
-                    .updateOne({_id:item_id},{$inc:{numInStock:-1}})
-                    return {status: true, insertedId:res.insertedId}
-                }else return {status: false}
+            .updateOne({item_id:item_id},
+                {$inc:{qty:1}});
+        if(result.modifiedCount === 0){
+            let = await db
+            .collection('cart')
+            .insertOne({item_id:item_id, qty: qty})
+        }
 
-            });
-            result.status 
+            result.acknowledged 
              ? res.status(200).json({status:200, data:result})
              : res.status(400).json({status:400, Message:"item didnt insert into db"})
             

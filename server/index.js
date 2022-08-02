@@ -12,6 +12,7 @@ const { postOrderAndDeleteCart } = require('./handlers/postOrderAndDeleteCart')
 const { updateCart } = require('./handlers/updateCart')
 const { updateStock } = require('./handlers/updateStock')
 const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
+const { deleteCartItem } = require('./Handlers/deleteCardItem');
 
 
 
@@ -78,10 +79,14 @@ express()
 // PATCH ENDPOINTS //
 
   // update cart in database by adding or removing item(s)
-  .patch("/api/cart/details", updateCart)
+  .patch("/api/cart/update", updateCart)
 
   // update stock after item(s) are purchased
   .patch("/api/items/update", updateStock)
+
+
+  //Delete ENDPOINTS 
+  .delete("/api/cart/deleteItem/:_id", deleteCartItem)
 
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
