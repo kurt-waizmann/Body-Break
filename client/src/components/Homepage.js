@@ -29,7 +29,7 @@ const Homepage = () => {
           <Banner />
           <ImgDiv>
             {suggestions.map((suggestion, key) => (
-              <Item suggestion={suggestion} />
+              <Item suggestion={suggestion} key={key} />
             ))}
           </ImgDiv>
         </div>

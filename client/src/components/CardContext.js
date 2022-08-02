@@ -8,19 +8,19 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log("action", action)
+  console.log("action", action);
   switch (action.type) {
     case "Add_Item_To_Card": {
       return { ...state, cardList: [...action.items] };
     }
     case "Get_Items_From_Card":
       return { ...state, cardList: [...action.items] };
-    
+
     case "Delete_Item_From_Card":
-      return {...state, cardList:[...action.items]}
+      return { ...state, cardList: [...action.items] };
       break;
     case "Update_Item's_Qty":
-      return {...state, cardList:[...action.items]}
+      return { ...state, cardList: [...action.items] };
     default:
       break;
   }
@@ -30,7 +30,7 @@ export const CardConext = createContext(null);
 
 export const CardProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("Meysam state", state)
+  console.log("Meysam state", state);
 
   // this function use for add item into the card
   const add_Item = async (item) => {
@@ -48,8 +48,11 @@ export const CardProvider = ({ children }) => {
   };
   // this function use for delete item from the card
   const delete_Item = async (_id) => {
-    const deleteItem = await sentDataToServer(`/api/cart/deleteItem/${_id}`,"delete");
-    if(deleteItem){
+    const deleteItem = await sentDataToServer(
+      `/api/cart/deleteItem/${_id}`,
+      "delete"
+    );
+    if (deleteItem) {
       const data = await getDataFromServer("/api/cart/details");
       dispatch({
         type: "Delete_Item_From_Card",
@@ -60,35 +63,41 @@ export const CardProvider = ({ children }) => {
   // this function use for Update item qty in the card
   const get_Items = async () => {
     const result = await getDataFromServer("/api/cart/details");
-    console.log("dispatcher", result)
+    console.log("dispatcher", result);
     dispatch({
       type: "Get_Items_From_Card",
       items: result,
     });
   };
 
-    // this function use for Update item qty in the card
-    const update_item_qty = async (body) => {
-      const updateItem = await sentDataToServer(`/api/cart/update/`,'PATCH',body);
-      console.log("dispatcher", updateItem)
-      if (updateItem){
-        const result = await getDataFromServer("/api/cart/details");
-        dispatch({
-          type: "Update_Item's_Qty",
-          items: result,
-        });
-      }
-    };
+  // this function use for Update item qty in the card
+  const update_item_qty = async (body) => {
+    const updateItem = await sentDataToServer(
+      `/api/cart/update/`,
+      "PATCH",
+      body
+    );
+    console.log("dispatcher", updateItem);
+    if (updateItem) {
+      const result = await getDataFromServer("/api/cart/details");
+      console.log("update", result);
+      dispatch({
+        type: "Update_Item's_Qty",
+        items: result,
+      });
+    }
+  };
 
   return (
     <CardConext.Provider
       value={{
         state,
         actions: {
-          add_Item, 
+          add_Item,
           get_Items,
           update_item_qty,
-          delete_Item },
+          delete_Item,
+        },
       }}
     >
       {children}

@@ -2,18 +2,51 @@ import styled from "styled-components";
 import Header from "./Header";
 import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const [selected, setSelected] = useState(null);
+
   const {
     state,
-    actions: { get_Items },
+    actions: { get_Items, update_item_qty },
   } = useContext(CardConext);
+  const [quantity, setQuantity] = useState(state.cardList);
+  console.log("hellooo", quantity, state);
 
   useEffect(() => {
     get_Items();
     console.log("useEffect", state.cardList);
   }, []);
 
+  useEffect(() => {
+    setQuantity(state.cardList);
+  }, [state]);
+
+  const addFunc = (_id) => {
+    update_item_qty({ _id: _id, inc: 1 });
+    // const arr = quantity.map((x, i) => {
+    //   console.log(x);
+    //   if (i === index) {
+    //     return { ...x, qty: parseInt(x.qty) + 1 };
+    //   }
+    //   return x;
+  };
+
+  const subtractFunc = (_id) => {
+    update_item_qty({ _id: _id, inc: -1 });
+    // const arr = quantity.map((x, i) => {
+    //   console.log(x);
+    //   if (i === index) {
+    //     return { ...x, qty: parseInt(x.qty) - 1 };
+    //   }
+    //   return x;
+  };
+
+  const nav = useNavigate();
+
+  console.log(quantity, selected);
   // state.cardList
   return (
     <>
@@ -24,18 +57,25 @@ const Cart = () => {
             <Title>Shopping Cart</Title>
             {state.cardList?.length && (
               <div>
-                {state.cardList.map((item) => {
+                {state.cardList.map((item, index) => {
                   return (
-                    <>
-                      <div>{item.name}</div>
-                      <div>{item.price}</div>
-                      <div>{item.qty}</div>
-                    </>
+                    <div key={item.item_id}>
+                      <Item>{item.name}</Item>
+                      <Price>Price: {item.price}</Price>
+                      <Quantity>
+                        Quantity: {item.qty}
+                        <Buttons onClick={() => subtractFunc(item._id)}>
+                          -
+                        </Buttons>
+                        <Buttons onClick={() => addFunc(item._id)}>+</Buttons>
+                        <Delete>Delete</Delete>
+                      </Quantity>
+                    </div>
                   );
                 })}
               </div>
             )}
-            <Button>Complete Order</Button>
+            <Button onClick={() => nav("/orderform")}>Complete Order</Button>
           </Summary>
         </InnerWrap>
       </Wrapper>
@@ -50,28 +90,20 @@ const Wrapper = styled.div`
   font-weight: bold;
   background-color: #1c1b1b;
   color: white;
-  height: 100%;
 `;
 
 const InnerWrap = styled.div`
-  height: 87%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 45%;
+  margin: auto;
 `;
 
 const Summary = styled.div`
-  width: 50%;
+  margin-top: 65px;
   border-radius: 3%;
   background-color: #313131;
   color: white;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 50px;
 `;
 const Title = styled.div`
   font-size: 30px;
@@ -85,6 +117,7 @@ const Button = styled.button`
   border-color: #04d9ff;
   background-color: black;
   border-radius: 5px;
+  margin-top: 5px;
   :before {
     pointer-events: none;
     content: "";
@@ -98,6 +131,59 @@ const Button = styled.button`
     transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
     filter: blur(1em);
   }
+  :hover {
+    cursor: pointer;
+    color: black;
+    background-color: #04d9ff;
+    transition-timing-function: ease-in-out;
+    transition-duration: 450ms;
+  }
+`;
+
+const Item = styled.div`
+  margin-top: 8px;
+  padding: 1px;
+`;
+
+const Price = styled.div`
+  padding: 1px;
+`;
+
+const Quantity = styled.div`
+  margin-bottom: 8px;
+  border-bottom: 1px solid #04d9ff;
+  /* width: fit-content; */
+`;
+
+const Buttons = styled.button`
+  color: #04d9ff;
+  height: 30px;
+  width: 30px;
+  border: 1px solid;
+  border-color: #04d9ff;
+  background-color: black;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  :hover {
+    cursor: pointer;
+    color: black;
+    background-color: #04d9ff;
+    transition-timing-function: ease-in-out;
+    transition-duration: 450ms;
+  }
+`;
+
+const Delete = styled.button`
+  color: #04d9ff;
+  height: 40px;
+  width: fit-content;
+  border: 1px solid;
+  border-color: #04d9ff;
+  background-color: black;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
   :hover {
     cursor: pointer;
     color: black;
