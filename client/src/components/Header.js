@@ -34,24 +34,20 @@ const Header = () => {
           <option value="/allcategories">All Catagories</option>
           <option value="/allbrands">All Brands</option>
         </Dropdown>
-        <Icon>
-          <Categories onClick={() => nav("/fitness")}>Fitness </Categories>
+        <Icon onClick={() => nav("/fitness")}>
+          <Categories>Fitness </Categories>
           <FiActivity style={{ marginLeft: "10px" }} />
         </Icon>
-        <Icon>
-          <Categories onClick={() => nav("/medical")}>
-            Health and Wellness
-          </Categories>
+        <Icon onClick={() => nav("/medical")}>
+          <Categories>Health and Wellness</Categories>
           <GiHealthNormal style={{ marginLeft: "10px" }} />
         </Icon>
-        <Icon>
-          <Categories onClick={() => nav("/lifestyle")}>Lifestyle</Categories>
+        <Icon onClick={() => nav("/lifestyle")}>
+          <Categories>Lifestyle</Categories>
           <FaHiking style={{ marginLeft: "10px" }} />
         </Icon>
-        <Icon>
-          <Categories onClick={() => nav("/entertainment")}>
-            Entertainment
-          </Categories>
+        <Icon onClick={() => nav("/entertainment")}>
+          <Categories>Entertainment</Categories>
           <FaIcons style={{ marginLeft: "10px" }} />
         </Icon>
       </Nav>
