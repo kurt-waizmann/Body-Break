@@ -6,7 +6,6 @@ import { GiHealthNormal } from "react-icons/gi";
 import { FaHiking, FaIcons } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
 
-
 const Header = () => {
   // const { setDropdownSelection } = useContext(AllItemsContext);
   const nav = useNavigate();
@@ -117,20 +116,6 @@ const SigninButton = styled.button`
   height: 30px;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
-  :before {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    /* background: #04d9ff; */
-    background: #02a4d3;
-    top: 15%;
-    left: 72%;
-    right: 0;
-    height: 20px;
-    width: 30px;
-    transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
-    filter: blur(1em);
-  }
   :hover {
     cursor: pointer;
     color: black;
@@ -157,22 +142,22 @@ const IconDiv = styled.div`
   cursor: pointer;
 `;
 
-const Dropdown = styled.select`
-  /* width: 55px; */
-  opacity: 0.8;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  border: none;
-  background-color: #313131;
-  color: white;
-  :hover {
-    text-shadow: 0 0 0.125em #02a4d3 hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-    box-shadow: 0 0 0.5em 0 #02a4d3, inset 0 0 0.5em 0 #04d9ff;
-    transition-timing-function: ease-in-out;
-    transition-duration: 300ms;
-  }
-`;
+// const Dropdown = styled.select`
+//   /* width: 55px; */
+//   opacity: 0.8;
+//   cursor: pointer;
+//   font-family: "Poppins", sans-serif;
+//   font-weight: bold;
+//   border: none;
+//   background-color: #313131;
+//   color: white;
+//   :hover {
+//     text-shadow: 0 0 0.125em #02a4d3 hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
+//     box-shadow: 0 0 0.5em 0 #02a4d3, inset 0 0 0.5em 0 #04d9ff;
+//     transition-timing-function: ease-in-out;
+//     transition-duration: 300ms;
+//   }
+// `;
 
 const Nav = styled.nav`
   display: flex;

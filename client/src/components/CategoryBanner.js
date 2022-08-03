@@ -3,10 +3,11 @@ import medical from "../../src/Imgs/Medical.png";
 import lifestyle from "../../src/Imgs/Lifestyle.png";
 import fitness from "../../src/Imgs/Fitness.png";
 import entertainment from "../../src/Imgs/Entertainment.png";
+import allitems from "../../src/Imgs/All-Items.png";
 import styled from "styled-components";
 
 const CategoryBanner = ({ category }) => {
-  console.log("category", category);
+//   console.log("category", category);
   if (category === "medical") {
     return (
       <>
@@ -36,6 +37,14 @@ const CategoryBanner = ({ category }) => {
       <>
         <BannerImg>
           <Img src={entertainment} />
+        </BannerImg>
+      </>
+    );
+  } else if (category === "allitems") {
+    return (
+      <>
+        <BannerImg>
+          <Img src={allitems} />
         </BannerImg>
       </>
     );
