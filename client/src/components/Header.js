@@ -59,7 +59,6 @@ const Icon = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* margin-right: 10px; */
   cursor: pointer;
   padding: 10px;
   position: relative;
@@ -101,7 +100,6 @@ const Company = styled(Link)`
 
 const SigninButton = styled.button`
   border: 1px solid;
-  /* border-color: #04d9ff; */
   border-color: #02a4d3;
   background-color: black;
   color: #04d9ff;
@@ -115,7 +113,6 @@ const SigninButton = styled.button`
     pointer-events: none;
     content: "";
     position: absolute;
-    /* background: #04d9ff; */
     background: #02a4d3;
     top: 15%;
     left: 72%;
@@ -128,7 +125,6 @@ const SigninButton = styled.button`
   :hover {
     cursor: pointer;
     color: black;
-    /* background-color: #04d9ff; */
     background-color: #02a4d3;
     transition-timing-function: ease-in-out;
     transition-duration: 450ms;
@@ -152,7 +148,6 @@ const IconDiv = styled.div`
 `;
 
 const Dropdown = styled.select`
-  /* width: 55px; */
   opacity: 0.8;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
@@ -180,32 +175,6 @@ const Nav = styled.nav`
   background: #141313;
 `;
 
-const Categories = styled.div`
-  /* cursor: pointer;
-  padding: 10px;
-  position: relative;
-  :after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    border-bottom: 1px solid #04d9ff;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 400ms ease-in-out;
-  }
-  :hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  } */
-  /* :hover {
-    text-shadow: 0 0 0.125em #04d9ff hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-    box-shadow: 0 0 0.5em 0 #04d9ff, inset 0 0 1em 0 #04d9ff;
-    transition-timing-function: ease-in-out;
-    transition-duration: 600ms;
-  } */
-`;
+const Categories = styled.div``;
 
 export default Header;

@@ -45,13 +45,6 @@ const Item = ({ suggestion }) => {
         {suggestion.numInStock > 0 ? (
           <CartWrapper>
             <>
-              <AddToCart
-                disabled={false}
-                onClick={() => cartHandler(suggestion._id)}
-              >
-                <CartSpan>Add To Cart</CartSpan>
-                <RiShoppingCartFill />
-              </AddToCart>
               <Quantity>
                 Quantity:
                 <NumberInput
@@ -61,6 +54,13 @@ const Item = ({ suggestion }) => {
                   onChange={(e) => submitFunc(e)}
                 ></NumberInput>
               </Quantity>
+              <AddToCart
+                disabled={false}
+                onClick={() => cartHandler(suggestion._id)}
+              >
+                <CartSpan>Add To Cart</CartSpan>
+                <RiShoppingCartFill />
+              </AddToCart>
             </>
           </CartWrapper>
         ) : (
@@ -73,16 +73,7 @@ const Item = ({ suggestion }) => {
     </Wrapper>
   );
 };
-//OLD CODE
-// const Wrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 180px;
-//   background-color: #333131;
-//   border-radius: 4px;
-//   padding: 15px;
-// `;
+
 const Wrapper = styled.div`
   display: flex;
   position: relative;
@@ -124,17 +115,7 @@ const CartWrapper = styled.div`
   position: absolute;
   bottom: 20px;
 `;
-//OLD CODE
-// const AddToCart = styled.button`
-//   display: flex;
-//   align-items: center;
-//   background: #605d5d;
-//   text-decoration: none;
-//   border: none;
-//   border-radius: 4px;
-//   margin-top: 20px;
-//   cursor: pointer;
-// `;
+
 const AddToCart = styled.button`
   display: flex;
   justify-content: center;
@@ -144,7 +125,7 @@ const AddToCart = styled.button`
   width: 100%;
   border: none;
   border-radius: 4px;
-  margin-top: 20px;
+  margin-top: 10px;
   cursor: pointer;
 `;
 const Span = styled.span`
