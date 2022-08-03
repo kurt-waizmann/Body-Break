@@ -16,18 +16,6 @@ const ProductComponent = (item) => {
     console.log(quantity, id)
   };
 
-  const submitFunc = (e) => {
-    e.preventDefault();
-    setQuantity(e.target.value);
-  };
-
-  const dropDowm = (qty) => {
-    const menu = []
-    for (let i = 0; i < qty; i++) {
-      menu.push(<option key={i} >{i+1}</option>) 
-    }
-    return menu;
-  }
 
   return (
     <>
