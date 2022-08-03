@@ -12,8 +12,10 @@ const ProductComponent = (item) => {
   } = useContext(CardConext);
 
   const cartHandler = (id) => {
+    if (quantity){
     add_Item({ qty: quantity, item_id: id });
-    console.log(quantity, id);
+    console.log(quantity, id)
+    };
   };
 
   const submitFunc = (e) => {
@@ -24,7 +26,9 @@ const ProductComponent = (item) => {
   return (
     <>
       <Wrapper key={v4()}>
+        <ImageWrap>
         <Imgs src={item.item.imageSrc} alt="item.item image" />
+        </ImageWrap>
         <ProductInfo>
           <ProductName>{item.item.name}</ProductName>
           <Brand>
@@ -35,10 +39,10 @@ const ProductComponent = (item) => {
             <Span>Price:</Span>
             {item.item.price}
           </Price>
-          <BodyLocation>
+          {/* <BodyLocation>
             <Span>Body Location:</Span>
             {item.item.body_location}
-          </BodyLocation>
+          </BodyLocation> */}
           <NumInStock>
             <Span>Items in stock:</Span>
             {item.item.numInStock}
@@ -67,8 +71,8 @@ const ProductComponent = (item) => {
             </CartWrapper>
           ) : (
             <OutOfStock>
-              <StyledP>Item is temporarily</StyledP>
-              <StyledP>out of stock</StyledP>
+              {/* <StyledP>Item is temporarily</StyledP> */}
+              <StyledP>Out of stock</StyledP>
             </OutOfStock>
           )}
         </ProductInfo>
@@ -83,11 +87,20 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 180px;
-  height: 370px;
+  height: 420px;
   background-color: #333131;
   border-radius: 4px;
-  padding: 15px;
+  padding: 0 15px 15px 15px;
 `;
+const ImageWrap = styled.div`
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: white;
+`
 const Imgs = styled.img`
   border-radius: 4px;
   height: 120px;
@@ -98,6 +111,7 @@ const ProductInfo = styled.div`
 `;
 const ProductName = styled.p`
   margin-bottom: 5px;
+  color: #80B3C4;
 `;
 const Brand = styled.p`
   flex-direction: row;
@@ -122,13 +136,17 @@ const AddToCart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #605d5d;
+  background: #8E8B8B;
   text-decoration: none;
   width: 100%;
+  height: 30px;
   border: none;
   border-radius: 4px;
   margin-top: 10px;
   cursor: pointer;
+  &:active{
+    background-color: #777474;
+  }
 `;
 const Span = styled.span`
   margin-right: 5px;
@@ -140,17 +158,19 @@ const CartSpan = styled.span`
 const OutOfStock = styled.div`
   display: flex;
   width: 83%;
+  height: 30px;
   position: absolute;
   bottom: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #da6304;
+  background: #FF9F00;
   text-decoration: none;
   border: none;
   border-radius: 4px;
   padding: 5px;
   cursor: not-allowed;
+  opacity: 0.5;
   /* margin-top: 30px; */
 `;
 const StyledP = styled.p`
@@ -159,9 +179,8 @@ const StyledP = styled.p`
 const Quantity = styled.form`
   display: flex;
   font-size: 14px;
-  justify-content: space-between;
   align-items: center;
-  background: #605d5d;
+  background: inherit;
   text-decoration: none;
   border: none;
   border-radius: 4px;
@@ -177,5 +196,6 @@ const NumberInput = styled.input`
   /* height: 40px; */
   border-radius: 4px;
   border: none;
+  margin-left: 40px;
 `;
 export default ProductComponent;
