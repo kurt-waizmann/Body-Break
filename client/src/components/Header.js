@@ -4,6 +4,8 @@ import { RiShoppingCartFill } from "react-icons/ri";
 import { FiActivity } from "react-icons/fi";
 import { GiHealthNormal } from "react-icons/gi";
 import { FaHiking, FaIcons } from "react-icons/fa";
+import { BiGridHorizontal } from "react-icons/bi";
+
 
 const Header = () => {
   // const { setDropdownSelection } = useContext(AllItemsContext);
@@ -26,14 +28,18 @@ const Header = () => {
         <SigninButton>Sign-in</SigninButton>
       </Wrapper>
       <Nav>
-        <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
+        {/* <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
           <option value={""} disabled selected hidden>
             All
           </option>
           <option value="/allitems">All Items</option>
           <option value="/allcategories">All Catagories</option>
           <option value="/allbrands">All Brands</option>
-        </Dropdown>
+        </Dropdown> */}
+        <Icon onClick={() => nav("/allitems")}>
+          <Categories>All Products </Categories>
+          <BiGridHorizontal style={{ marginLeft: "10px" }} />
+        </Icon>
         <Icon onClick={() => nav("/fitness")}>
           <Categories>Fitness </Categories>
           <FiActivity style={{ marginLeft: "10px" }} />
@@ -70,7 +76,7 @@ const Icon = styled.div`
     bottom: 0;
     width: 100%;
     height: 2px;
-    border-bottom: 1px solid #04d9ff;
+    border-bottom: 1px solid #02a4d3;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 400ms ease-in-out;
