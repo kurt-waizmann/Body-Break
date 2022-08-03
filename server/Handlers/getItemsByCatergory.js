@@ -50,7 +50,7 @@ const getItemsByCatergory = async (req, res) => {
       //---------------------------------check for output -------------------------------------
       if (resualt.length > 0)
         res.status(200).json({ status: 200, data: resualt });
-      else res.status(400).json({ status: 400, Message: `there is'nt any item` });
+      else res.status(204).json({ status: 204, Message: `there is'nt any item` });
     } catch (err) {
       res.status(500).json({ status: 500, Message: err.Message });
     } finally {
