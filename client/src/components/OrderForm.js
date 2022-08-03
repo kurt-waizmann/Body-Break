@@ -28,11 +28,23 @@ const OrderForm = () => {
 
   const submitFunc = (ev) => {
     ev.preventDefault();
-    const orderId = uuidv4();
+
+    console.log("---------------Meysam 2---------------------------")
+    console.log({
+      // _id: orderId,
+      creditCard: creditcard,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      email: email,
+      items: state.cardList,
+      cost: sum,
+    })
+    // const orderId = uuidv4();
     fetch("/api/order/details", {
       method: "POST",
       body: JSON.stringify({
-        _id: orderId,
+        // _id: orderId,
         creditCard: creditcard,
         firstName: firstName,
         lastName: lastName,
