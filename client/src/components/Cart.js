@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ProductComponent from "./ProductComponent";
 
 const Cart = () => {
   const {
@@ -41,34 +42,46 @@ const Cart = () => {
             {state.cardList?.length && (
               <div>
                 {state.cardList.map((item) => {
+                  console.log("item", item);
                   return (
                     <div key={item.item_id}>
-                      <Item>{item.name}</Item>
-                      <Price>Price: {item.price}</Price>
-                      <Quantity>
-                        Quantity: {item.qty}
-                        <Buttons
-                          onClick={() => subtractFunc(item._id, item.qty)}
-                        >
-                          -
-                        </Buttons>
-                        <Buttons
-                          onClick={() =>
-                            addFunc(item._id, item.numInStock, item.qty)
-                          }
-                        >
-                          +
-                        </Buttons>
-                        <Delete onClick={() => delete_Item(item._id)}>
-                          Delete
-                        </Delete>
-                      </Quantity>
+                      <ItemWrapper>
+                        <ItemImg src={item.imageSrc} />
+                        <ItemInfo>
+                          <Item>{item.name}</Item>
+                          <Price>Price: {item.price}</Price>
+                        </ItemInfo>
+
+                        <QuantityBox>
+                          <Quantity>
+                            <ButtonBox>
+                              <div>Quantity: {item.qty}</div>
+                              <Buttons
+                                onClick={() => subtractFunc(item._id, item.qty)}
+                              >
+                                -
+                              </Buttons>
+                              <Buttons
+                                onClick={() =>
+                                  addFunc(item._id, item.numInStock, item.qty)
+                                }
+                              >
+                                +
+                              </Buttons>
+                            </ButtonBox>
+
+                            <Delete onClick={() => delete_Item(item._id)}>
+                              Delete
+                            </Delete>
+                          </Quantity>
+                        </QuantityBox>
+                      </ItemWrapper>
                     </div>
                   );
                 })}
               </div>
             )}
-            <div>Subtotal: ${sum}</div>
+            <Subtotal>Subtotal: ${sum}</Subtotal>
             <Button onClick={() => nav("/orderform")}>Complete Order</Button>
           </Summary>
         </InnerWrap>
@@ -88,7 +101,7 @@ const Wrapper = styled.div`
 
 const InnerWrap = styled.div`
   height: 100%;
-  width: 45%;
+  width: 65%;
   margin: auto;
 `;
 
@@ -100,11 +113,40 @@ const Summary = styled.div`
   padding: 20px;
 `;
 const Title = styled.div`
+  margin-bottom: 10px;
   font-size: 30px;
 `;
-
+const ItemWrapper = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background-color: #333131;
+  /* margin:0; */
+  /* border-radius: 4px; */
+  padding: 15px;
+  border-bottom: 1px solid #02a4d3;
+`;
+const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+`;
+const ItemImg = styled.img`
+  border-radius: 4px;
+  width: 100px;
+`;
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 const Button = styled.button`
-  color: #04d9ff;
+  color: #02a4d3;
   height: 40px;
   width: 150px;
   border: 1px solid;
@@ -112,30 +154,17 @@ const Button = styled.button`
   background-color: black;
   border-radius: 5px;
   margin-top: 5px;
-  :before {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    background: #04d9ff;
-    top: 15%;
-    left: 72%;
-    right: 0;
-    height: 20px;
-    width: 30px;
-    transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
-    filter: blur(1em);
-  }
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #04d9ff;
+    background-color: #02a4d3;
     transition-timing-function: ease-in-out;
     transition-duration: 450ms;
   }
 `;
 
 const Item = styled.div`
-  margin-top: 8px;
+  margin-bottom: 15px;
   padding: 1px;
 `;
 
@@ -144,45 +173,53 @@ const Price = styled.div`
 `;
 
 const Quantity = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
   margin-bottom: 8px;
-  border-bottom: 1px solid #04d9ff;
-  /* width: fit-content; */
+  width: 180px;
 `;
-
+const QuantityBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+`;
 const Buttons = styled.button`
-  color: #04d9ff;
+  color: #02a4d3;
   height: 30px;
   width: 30px;
   border: 1px solid;
-  border-color: #04d9ff;
+  border-color: #02a4d3;
   background-color: black;
   border-radius: 5px;
   margin-top: 5px;
-  margin-left: 5px;
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #04d9ff;
+    background-color: #02a4d3;
     transition-timing-function: ease-in-out;
     transition-duration: 450ms;
   }
 `;
 
 const Delete = styled.button`
-  color: #04d9ff;
+  color: #02a4d3;
   height: 40px;
-  width: fit-content;
+  width: auto;
   border: 1px solid;
-  border-color: #04d9ff;
+  border-color: #02a4d3;
   background-color: black;
   border-radius: 5px;
   margin-top: 5px;
-  margin-left: 5px;
   :hover {
     cursor: pointer;
     color: black;
-    background-color: #04d9ff;
+    background-color: #02a4d3;
     transition-timing-function: ease-in-out;
     transition-duration: 450ms;
   }
+`;
+const Subtotal = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
