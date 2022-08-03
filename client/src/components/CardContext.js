@@ -53,7 +53,8 @@ export const CardProvider = ({ children }) => {
       "DELETE"
     );
     if (deleteItem) {
-      const data = await getDataFromServer("/api/cart/details");
+      let data = await getDataFromServer("/api/cart/details");
+      data === null && (data = [])
       dispatch({
         type: "Delete_Item_From_Cart",
         items: data,
