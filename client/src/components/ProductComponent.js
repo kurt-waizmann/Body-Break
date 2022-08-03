@@ -128,6 +128,7 @@ const AddToCart = styled.button`
   border: none;
   border-radius: 4px;
   margin-top: 10px;
+  cursor: pointer;
 `;
 const Span = styled.span`
   margin-right: 5px;
@@ -149,6 +150,7 @@ const OutOfStock = styled.div`
   border: none;
   border-radius: 4px;
   padding: 5px;
+  cursor: not-allowed;
   /* margin-top: 30px; */
 `;
 const StyledP = styled.p`

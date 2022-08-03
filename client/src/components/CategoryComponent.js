@@ -8,11 +8,11 @@ import ProductComponent from "./ProductComponent";
 import CategoryFilter from "./CategoryFilter";
 import CategoryBanner from "./CategoryBanner";
 
-const Fitness = () => {
+const CategoryComponent = () => {
   const { items } = useContext(AllItemsContext);
   //Get category from params
   const { category } = useParams();
-  // console.log("params", category);
+  // console.log("params", typeof category);
   //use params to filter items from category
   const categoryItems = CategoryFilter(category);
   // console.log(categoryItems)
@@ -22,12 +22,20 @@ const Fitness = () => {
       <Wrapper>
         <Header />
         {/* <Title>{category}</Title> */}
-        <CategoryBanner category={category}/>
+        <CategoryBanner category={category} />
         <Container>
-          {categoryItems?.length > 0 &&
+          {category === "allitems"
+            ? items.map((item, index) => {
+                return <ProductComponent key={index} item={item} />;
+              })
+            : categoryItems?.length > 0 &&
+              categoryItems.map((item) => {
+                return <ProductComponent key={v4()} item={item} />;
+              })}
+          {/* {categoryItems?.length > 0 &&
             categoryItems.map((item) => {
               return <ProductComponent item={item} />;
-            })}
+            })} */}
         </Container>
       </Wrapper>
     </>
@@ -43,7 +51,7 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   /* color: #04d9ff; */
-  color: #02A4D3;
+  color: #02a4d3;
   font-size: x-large;
   padding: 30px;
   /* text-decoration: underline; */
@@ -56,4 +64,4 @@ const Container = styled.div`
   gap: 20px;
   color: white;
 `;
-export default Fitness;
+export default CategoryComponent;
