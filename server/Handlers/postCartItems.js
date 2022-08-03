@@ -21,7 +21,11 @@ const postCartItems = async (req, res) => {
 
             result.acknowledged 
              ? res.status(200).json({status:200, data:result})
+<<<<<<< HEAD
+             : res.status(204).json({status:204, Message:"item didnt insert into db"})
+=======
              : res.status(404).json({status:404, Message:"item didnt insert into db"})
+>>>>>>> master
             
     } catch (err) {
         res.status(500).json({status:500, Message: err.Message})

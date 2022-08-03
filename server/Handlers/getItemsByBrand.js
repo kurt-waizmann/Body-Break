@@ -21,7 +21,11 @@ const getItemsByBrand = async (req, res) => {
       //---------------------------------check for output -------------------------------------
       if (resualt.length > 0)
         res.status(200).json({ status: 200, data: resualt });
+<<<<<<< HEAD
+      else res.status(204).json({ status: 204, Message: `there is'nt any item` });
+=======
       else res.status(404).json({ status: 404, Message: `there is'nt any item` });
+>>>>>>> master
     } catch (err) {
       res.status(500).json({ status: 500, Message: err.Message });
     } finally {
