@@ -2,9 +2,8 @@ import styled from "styled-components";
 import Header from "./Header";
 import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductComponent from "./ProductComponent";
 
 const Cart = () => {
   const {
@@ -30,7 +29,7 @@ const Cart = () => {
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
-  }, 0);
+  }, 0); 
 
   return (
     <>
