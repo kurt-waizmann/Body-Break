@@ -34,7 +34,11 @@ const getCartDetails = async (req, res) => {
     const cartDetails = await db.collection("cart").aggregate(query).toArray();
     cartDetails.length !== 0
       ? res.status(200).json({ status: 200, data: cartDetails })
+<<<<<<< HEAD
       : res.status(204).json({ status: 204, Message: "cart is empty" });
+=======
+      : res.status(404).json({ status: 404, Message: "cart is empty" });
+>>>>>>> master
   } catch (err) {
     res.status(500).json({ status: 500, Message: err.Message });
   } finally {

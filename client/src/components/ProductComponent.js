@@ -6,23 +6,29 @@ import { CardConext } from "./CardContext";
 import { v4 as uuidv4, v4 } from "uuid";
 
 const ProductComponent = (item) => {
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const {
     actions: { add_Item },
   } = useContext(CardConext);
 
   const cartHandler = (id) => {
-    if (quantity){
     add_Item({ qty: quantity, item_id: id });
     console.log(quantity, id)
-    };
   };
 
   const submitFunc = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
-  // console.log("item",item);
+
+  const dropDowm = (qty) => {
+    const menu = []
+    for (let i = 0; i < qty; i++) {
+      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
+    }
+    return menu;
+  }
+
   return (
     <>
       <Wrapper key={v4()}>
@@ -52,13 +58,16 @@ const ProductComponent = (item) => {
               <>
                 <Quantity>
                   <label>Quantity:</label>
-                  <NumberInput
+                  <Select onChange={(e) => submitFunc(e)}>
+                    {dropDowm(item.item.numInStock)}
+                  </Select>
+                  {/* <NumberInput
                     type="number"
                     value={quantity}
                     min={1}
                     max={item.item.numInStock}
                     onChange={(e) => submitFunc(e)}
-                  ></NumberInput>
+                  ></NumberInput> */}
                 </Quantity>
                 <AddToCart
                   disabled={false}
@@ -198,4 +207,15 @@ const NumberInput = styled.input`
   border: none;
   margin-left: 40px;
 `;
+
+const Select = styled.select`
+  width: 40px;
+  height: 20px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #8E8B8B;
+  color: white;
+  cursor: pointer;
+`
 export default ProductComponent;
