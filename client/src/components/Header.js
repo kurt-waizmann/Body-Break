@@ -5,11 +5,24 @@ import { FiActivity } from "react-icons/fi";
 import { GiHealthNormal } from "react-icons/gi";
 import { FaHiking, FaIcons } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
+import { useContext, useEffect } from "react";
+import { CardConext } from "./CardContext";
 
 const Header = () => {
+  const {state, actions:{get_Items}} = useContext(CardConext);
+  useEffect(() => {
+    get_Items();
+  }, []);
   // const { setDropdownSelection } = useContext(AllItemsContext);
   const nav = useNavigate();
   // Handler for our Dropdown/select
+
+  const qty = state.cardList.reduce((accumulator, curValue) => {
+
+    return accumulator + curValue.qty
+  
+  }, 0)
+
   const handleChange = (value) => {
     nav(value);
   };
@@ -21,6 +34,7 @@ const Header = () => {
         <SearchBar placeholder="What are you looking for..."></SearchBar>
         <Link to="/cart">
           <IconDiv>
+             { qty}  
             <RiShoppingCartFill style={{ color: "#02A4D3" }} />
           </IconDiv>
         </Link>
@@ -136,7 +150,9 @@ const SearchBar = styled.input`
 `;
 
 const IconDiv = styled.div`
+  display: flex;
   cursor: pointer;
+  color: white;
 `;
 
 // const Dropdown = styled.select`
