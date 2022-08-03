@@ -23,13 +23,6 @@ const Item = ({ suggestion }) => {
     setQuantity(e.target.value);
   };
 
-  const dropDowm = (qty) => {
-    const menu = []
-    for (let i = 0; i < qty; i++) {
-      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
-    }
-    return menu;
-  }
 
   return (
     <Wrapper key={suggestion._id}>
@@ -59,8 +52,10 @@ const Item = ({ suggestion }) => {
             <>
               <Quantity>
                 Quantity:
-                <Select onChange={(e) => submitFunc(e)}>
-                    {dropDowm(suggestion.numInStock)}
+                <Select  value={quantity} onChange={(e) => submitFunc(e)}>
+                { [...Array(suggestion.numInStock).keys()].map(i=>{
+                      return <option>{i+1}</option>
+                    })}
                   </Select>
                 {/* <NumberInput
                   type="number"
