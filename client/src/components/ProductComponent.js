@@ -6,23 +6,30 @@ import { CardConext } from "./CardContext";
 import { v4 as uuidv4, v4 } from "uuid";
 
 const ProductComponent = (item) => {
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const {
     actions: { add_Item },
   } = useContext(CardConext);
 
   const cartHandler = (id) => {
-    if (quantity){
     add_Item({ qty: quantity, item_id: id });
     console.log(quantity, id)
-    };
   };
 
   const submitFunc = (e) => {
     e.preventDefault();
+    console.log("SUBMIT FUNC", e.target.value)
     setQuantity(e.target.value);
   };
-  // console.log("item",item);
+
+  const dropDowm = (qty) => {
+    const menu = []
+    for (let i = 0; i < qty; i++) {
+      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
+    }
+    return menu;
+  }
+
   return (
     <>
       <Wrapper key={v4()}>
@@ -52,13 +59,16 @@ const ProductComponent = (item) => {
               <>
                 <Quantity>
                   <label>Quantity:</label>
-                  <NumberInput
+                  <select onChange={(e) => submitFunc(e)}>
+                    {dropDowm(item.item.numInStock)}
+                  </select>
+                  {/* <NumberInput
                     type="number"
                     value={quantity}
                     min={1}
                     max={item.item.numInStock}
                     onChange={(e) => submitFunc(e)}
-                  ></NumberInput>
+                  ></NumberInput> */}
                 </Quantity>
                 <AddToCart
                   disabled={false}
