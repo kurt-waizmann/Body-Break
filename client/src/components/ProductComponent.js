@@ -24,7 +24,7 @@ const ProductComponent = (item) => {
   const dropDowm = (qty) => {
     const menu = []
     for (let i = 0; i < qty; i++) {
-      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
+      menu.push(<option key={i} >{i+1}</option>) 
     }
     return menu;
   }
@@ -58,8 +58,12 @@ const ProductComponent = (item) => {
               <>
                 <Quantity>
                   <label>Quantity:</label>
-                  <Select onChange={(e) => submitFunc(e)}>
-                    {dropDowm(item.item.nuInStock)}
+                  <Select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                    { [...Array(item.item.numInStock).keys()].map(i=>{
+                      return <option>{i+1}</option>
+                    })}
+
+                    
                   </Select>
                   {/* <NumberInput
                     type="number"
