@@ -6,11 +6,9 @@ const { getItemsByBrand } = require('./handlers/getItemsByBrand');
 const { getAllItems } = require('./handlers/getAllItems')
 const { getCartDetails } = require('./handlers/getCartDetails')
 const { getOrderDetails } = require('./handlers/getOrderDetails')
-const { getSuggestedItems } = require('./handlers/getSuggestedItems')
 const { postCartItems } = require('./handlers/postCartItems')
 const { postOrderAndDeleteCart } = require('./handlers/postOrderAndDeleteCart')
 const { updateCart } = require('./handlers/updateCart')
-const { updateStock } = require('./handlers/updateStock')
 const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
 const { deleteCartItem } = require('./Handlers/deleteCardItem');
 const { getCartNum } = require('./handlers/getCartNum');
@@ -51,8 +49,7 @@ express()
   // get items by their category type
   .get("/api/items/category/:category", getItemsByCatergory)
 
-  // get 6 of the highest quantity items
-  .get("/api/items/suggested", getSuggestedItems)
+ 
 
   // get details about what's in the cart
   .get("/api/cart/details", getCartDetails)
@@ -85,8 +82,7 @@ express()
   // update cart in database by adding or removing item(s)
   .patch("/api/cart/update", updateCart)
 
-  // update stock after item(s) are purchased
-  .patch("/api/items/update", updateStock)
+  
 
 
   //Delete ENDPOINTS 
