@@ -16,7 +16,6 @@ const Cart = () => {
     get_Items();
     console.log("useEffect", state.cardList);
   }, []);
-  
 
   const addFunc = (_id, numInStock, qty) => {
     if (qty < numInStock) update_item_qty({ _id: _id, inc: 1 });
@@ -30,7 +29,7 @@ const Cart = () => {
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
-  }, 0); 
+  }, 0);
 
   return (
     <>
@@ -45,12 +44,13 @@ const Cart = () => {
                   return (
                     <div key={item.item_id}>
                       <ItemWrapper>
-                        <ItemImg src={item.imageSrc} />
-                        <ItemInfo>
-                          <Item>{item.name}</Item>
-                          <Price>Price: {item.price}</Price>
-                        </ItemInfo>
-
+                        <ImgNamePrice>
+                          <ItemImg src={item.imageSrc} />
+                          <ItemInfo>
+                            <Item>{item.name}</Item>
+                            <Price>Price: {item.price}</Price>
+                          </ItemInfo>
+                        </ImgNamePrice>
                         <QuantityBox>
                           <Quantity>
                             <ButtonBox>
@@ -91,6 +91,9 @@ const Cart = () => {
 
 export default Cart;
 
+const ImgNamePrice = styled.div`
+  display: flex;
+`;
 const Wrapper = styled.div`
   font-family: "Poppins", sans-serif;
   font-weight: bold;
@@ -117,6 +120,7 @@ const Title = styled.div`
 `;
 const ItemWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   position: relative;
   flex-direction: row;
   align-items: center;
