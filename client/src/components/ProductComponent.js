@@ -20,7 +20,7 @@ const ProductComponent = (item) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
-    // console.log("item",item);
+  // console.log("item",item);
   return (
     <>
       <Wrapper key={v4()}>
@@ -46,13 +46,6 @@ const ProductComponent = (item) => {
           {item.item.numInStock > 0 ? (
             <CartWrapper>
               <>
-                <AddToCart
-                  disabled={false}
-                  onClick={() => cartHandler(item.item._id)}
-                >
-                  <CartSpan>Add To Cart</CartSpan>
-                  <RiShoppingCartFill />
-                </AddToCart>
                 <Quantity>
                   <label>Quantity:</label>
                   <NumberInput
@@ -63,6 +56,13 @@ const ProductComponent = (item) => {
                     onChange={(e) => submitFunc(e)}
                   ></NumberInput>
                 </Quantity>
+                <AddToCart
+                  disabled={false}
+                  onClick={() => cartHandler(item.item._id)}
+                >
+                  <CartSpan>Add To Cart</CartSpan>
+                  <RiShoppingCartFill />
+                </AddToCart>
               </>
             </CartWrapper>
           ) : (
@@ -127,7 +127,8 @@ const AddToCart = styled.button`
   width: 100%;
   border: none;
   border-radius: 4px;
-  margin-top: 20px;
+  margin-top: 10px;
+  cursor: pointer;
 `;
 const Span = styled.span`
   margin-right: 5px;
@@ -149,6 +150,7 @@ const OutOfStock = styled.div`
   border: none;
   border-radius: 4px;
   padding: 5px;
+  cursor: not-allowed;
   /* margin-top: 30px; */
 `;
 const StyledP = styled.p`

@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { CardConext } from "./CardContext";
+
 
 const OrderForm = () => {
   const [creditcard, setCreditcard] = useState();
@@ -12,6 +14,17 @@ const OrderForm = () => {
   const [email, setEmail] = useState();
 
   const navigate = useNavigate();
+  const {state, actions: { get_Items }} = useContext(CardConext);
+
+  useEffect(() => {
+    get_Items()
+  }, [])
+
+  const sum = state.cardList.reduce((accumulator, curValue) => {
+    const price = Math.floor(curValue.price.slice(1, curValue.price.length));
+    return accumulator + curValue.qty * price;
+  }, 0);
+
 
   const submitFunc = (ev) => {
     ev.preventDefault();
@@ -25,8 +38,9 @@ const OrderForm = () => {
         lastName: lastName,
         address: address,
         email: email,
-        items: "needs Functionality",
-        cost: "needs Functionality",
+        items: state.cardList,
+        cost: sum,
+        cartList: [...state.cardList]
       }),
       headers: { "Content-Type": "application/json" },
     })
