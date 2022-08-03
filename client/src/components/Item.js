@@ -231,5 +231,4 @@ const Select = styled.select`
   color: white;
   cursor: pointer;
 `
-
 export default Item;
