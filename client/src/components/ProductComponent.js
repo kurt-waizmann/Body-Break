@@ -18,7 +18,6 @@ const ProductComponent = (item) => {
 
   const submitFunc = (e) => {
     e.preventDefault();
-    console.log("SUBMIT FUNC", e.target.value)
     setQuantity(e.target.value);
   };
 
@@ -59,9 +58,9 @@ const ProductComponent = (item) => {
               <>
                 <Quantity>
                   <label>Quantity:</label>
-                  <select onChange={(e) => submitFunc(e)}>
+                  <Select onChange={(e) => submitFunc(e)}>
                     {dropDowm(item.item.numInStock)}
-                  </select>
+                  </Select>
                   {/* <NumberInput
                     type="number"
                     value={quantity}
@@ -208,4 +207,15 @@ const NumberInput = styled.input`
   border: none;
   margin-left: 40px;
 `;
+
+const Select = styled.select`
+  width: 40px;
+  height: 20px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #8E8B8B;
+  color: white;
+  cursor: pointer;
+`
 export default ProductComponent;

@@ -3,6 +3,8 @@ import { RiShoppingCartFill } from "react-icons/ri";
 import { useState } from "react";
 import { CardConext } from "./CardContext";
 import { useContext } from "react";
+import { v4 as uuidv4, v4 } from "uuid";
+
 
 const Item = ({ suggestion }) => {
   const [quantity, setQuantity] = useState(null);
@@ -12,16 +14,22 @@ const Item = ({ suggestion }) => {
   } = useContext(CardConext);
 
   const cartHandler = (id) => {
-    if(quantity){
     add_Item({ qty: quantity, item_id: id });
     console.log(quantity, id)
-    };
   };
 
   const submitFunc = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
+
+  const dropDowm = (qty) => {
+    const menu = []
+    for (let i = 0; i < qty; i++) {
+      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
+    }
+    return menu;
+  }
 
   return (
     <Wrapper key={suggestion._id}>
@@ -51,13 +59,16 @@ const Item = ({ suggestion }) => {
             <>
               <Quantity>
                 Quantity:
-                <NumberInput
+                <Select onChange={(e) => submitFunc(e)}>
+                    {dropDowm(suggestion.numInStock)}
+                  </Select>
+                {/* <NumberInput
                   type="number"
                   min={1}
                   max={suggestion.numInStock}
                   onChange={(e) => submitFunc(e)}
                   required
-                ></NumberInput>
+                ></NumberInput> */}
               </Quantity>
               <AddToCart
               disabled={false}
@@ -209,4 +220,15 @@ const NumberInput = styled.input`
   border: none;
   margin-left: 40px;
 `;
+
+const Select = styled.select`
+  width: 40px;
+  height: 20px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #8E8B8B;
+  color: white;
+  cursor: pointer;
+`
 export default Item;
