@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 
 
@@ -39,7 +40,7 @@ const ConfirmationPage = () => {
                             </Order>
                         </OrderSummary>
                     </Summary>
-                    <Button>Return to Homepage</Button>
+                    <Button to={"/"}>Return to Homepage</Button>
                     </>}
             </InnerWrap>
         </Wrapper>
@@ -103,7 +104,8 @@ const Line = styled.div`
     border-bottom: 2px solid #04d9ff;
 `
 
-const Button = styled.button`
+const Button = styled(Link)`
+    text-decoration: none;
     background-color: inherit;
     border: none;
     color:#878787;
