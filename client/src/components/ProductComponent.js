@@ -59,7 +59,7 @@ const ProductComponent = (item) => {
                 <Quantity>
                   <label>Quantity:</label>
                   <Select onChange={(e) => submitFunc(e)}>
-                    {dropDowm(item.item.numInStock)}
+                    {dropDowm(item.item.nuInStock)}
                   </Select>
                   {/* <NumberInput
                     type="number"

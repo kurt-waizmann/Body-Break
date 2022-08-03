@@ -7,7 +7,7 @@ import { v4 as uuidv4, v4 } from "uuid";
 
 
 const Item = ({ suggestion }) => {
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const {
     actions: { add_Item },
