@@ -10,13 +10,13 @@ const initialState = {
 const reducer = (state, action) => {
   console.log("action", action);
   switch (action.type) {
-    case "Add_Item_To_Card": {
+    case "Add_Item_To_Cart": {
       return { ...state, cardList: [...action.items] };
     }
-    case "Get_Items_From_Card":
-      return { ...state, cardList: [...action?.items] };
+    case "Get_Items_From_Cart":
+      return { ...state, cardList: [...action.items] };
 
-    case "Delete_Item_From_Card":
+    case "Delete_Item_From_Cart":
       return { ...state, cardList: [...action.items] };
       break;
     case "Update_Item's_Qty":
@@ -41,7 +41,7 @@ export const CardProvider = ({ children }) => {
     if (addItem) {
       const result = await getDataFromServer("/api/cart/details");
       dispatch({
-        type: "Add_Item_To_Card",
+        type: "Add_Item_To_Cart",
         items: result,
       });
     }
@@ -55,7 +55,7 @@ export const CardProvider = ({ children }) => {
     if (deleteItem) {
       const data = await getDataFromServer("/api/cart/details");
       dispatch({
-        type: "Delete_Item_From_Card",
+        type: "Delete_Item_From_Cart",
         items: data,
       });
     }
@@ -64,11 +64,10 @@ export const CardProvider = ({ children }) => {
   const get_Items = async () => {
     const result = await getDataFromServer("/api/cart/details");
     console.log("dispatcher", result);
-    if (result !== null)
-      dispatch({
-        type: "Get_Items_From_Card",
-        items: result,
-      });
+    dispatch({
+      type: "Get_Items_From_Cart",
+      items: result,
+    });
   };
 
   // this function use for Update item qty in the card

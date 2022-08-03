@@ -15,7 +15,10 @@ const Homepage = () => {
   useEffect(() => {
     const suggested = [];
     while (suggested.length < 24) {
-      suggested.push(items[Math.floor(Math.random() * items.length)]);
+      const randomItem = items[Math.floor(Math.random() * items.length)];
+      if (randomItem.numInStock > 0) {
+        suggested.push(randomItem);
+      }
     }
     setSuggestions(suggested);
   }, []);
@@ -25,7 +28,6 @@ const Homepage = () => {
       <Container>
         <div>
           <Header />
-          {/* <Title>BodyBreak</Title> */}
           <Banner />
           <ImgDiv>
             {suggestions.map((suggestion, key) => (
@@ -42,14 +44,6 @@ const Container = styled.div`
   background-color: #1c1b1b;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  color: #04d9ff;
-  font-size: x-large;
-  padding: 30px;
 `;
 
 const ImgDiv = styled.div`

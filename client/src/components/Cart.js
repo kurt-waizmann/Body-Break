@@ -17,10 +17,6 @@ const Cart = () => {
     console.log("useEffect", state.cardList);
   }, []);
 
-  // useEffect(() => {
-  //   setQuantity(state.cardList);
-  // }, [state]);
-
   const addFunc = (_id, numInStock, qty) => {
     if (qty < numInStock) update_item_qty({ _id: _id, inc: 1 });
   };
