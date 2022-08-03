@@ -29,7 +29,7 @@ const ConfirmationPage = () => {
                             <Order>
                             <div>Confimation Number: <Details>{confirmation._id}</Details></div>
                             <span>Number of Items: <Details>{confirmation.items.length}</Details> </span>
-                            <span>Cost: <Details>{confirmation.cost}</Details> </span>
+                            <span>Cost: <Details>$ {confirmation.cost}</Details> </span>
                             </Order>
                             <Line/>
                             <Order>
