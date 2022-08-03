@@ -18,6 +18,7 @@ const updateCart = async (req, res) => {
         res.status(500).json({status: 500, Massegae: err.Massegae})
   } finally {
     client.close();
+    //
   }
 };
 
