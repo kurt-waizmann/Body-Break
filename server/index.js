@@ -13,6 +13,7 @@ const { updateCart } = require('./handlers/updateCart')
 const { updateStock } = require('./handlers/updateStock')
 const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
 const { deleteCartItem } = require('./Handlers/deleteCardItem');
+const { getCartNum } = require('./handlers/getCartNum');
 
 
 
@@ -58,6 +59,9 @@ express()
 
   // get details about the completed order
   .get("/api/order/details", getOrderDetails)
+
+  // get number of items in the cart
+  .get("/api/cart/num", getCartNum)
 
   // get bacon
   .get('/bacon', (req, res) => res.status(200).json('🥓'))
