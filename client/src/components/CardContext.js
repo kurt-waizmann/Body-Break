@@ -14,7 +14,7 @@ const reducer = (state, action) => {
       return { ...state, cardList: [...action.items] };
     }
     case "Get_Items_From_Card":
-      return { ...state, cardList: [...action.items] };
+      return { ...state, cardList: [...action?.items] };
 
     case "Delete_Item_From_Card":
       return { ...state, cardList: [...action.items] };
@@ -64,10 +64,11 @@ export const CardProvider = ({ children }) => {
   const get_Items = async () => {
     const result = await getDataFromServer("/api/cart/details");
     console.log("dispatcher", result);
-    dispatch({
-      type: "Get_Items_From_Card",
-      items: result,
-    });
+    if (result !== null)
+      dispatch({
+        type: "Get_Items_From_Card",
+        items: result,
+      });
   };
 
   // this function use for Update item qty in the card
