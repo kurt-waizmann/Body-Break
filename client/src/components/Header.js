@@ -9,7 +9,10 @@ import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
 
 const Header = () => {
-  const {state, actions:{get_Items}} = useContext(CardConext);
+  const {
+    state,
+    actions: { get_Items },
+  } = useContext(CardConext);
   useEffect(() => {
     get_Items();
   }, []);
@@ -18,10 +21,8 @@ const Header = () => {
   // Handler for our Dropdown/select
 
   const qty = state.cardList.reduce((accumulator, curValue) => {
-
-    return accumulator + curValue.qty
-  
-  }, 0)
+    return accumulator + curValue.qty;
+  }, 0);
 
   const handleChange = (value) => {
     nav(value);
@@ -34,11 +35,13 @@ const Header = () => {
         <SearchBar placeholder="What are you looking for..."></SearchBar>
         <Link to="/cart">
           <IconDiv>
-             { qty}  
-            <RiShoppingCartFill style={{ color: "#02A4D3" }} />
+            <RiShoppingCartFill
+              style={{ color: "#02A4D3", fontSize: "23px" }}
+            />
+            <QuantityBox>{qty}</QuantityBox>
           </IconDiv>
         </Link>
-        <SigninButton>Sign-in</SigninButton>
+        {/* <SigninButton>Sign-in</SigninButton> */}
       </Wrapper>
       <Nav>
         {/* <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
@@ -107,7 +110,7 @@ const Wrapper = styled.div`
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   height: 50px;
-  padding: 0 70px 0 70px;
+  padding: 0 70px 0 53px;
 `;
 
 const Company = styled(Link)`
@@ -151,10 +154,22 @@ const SearchBar = styled.input`
 
 const IconDiv = styled.div`
   display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* width:150px; */
+  /* font-size: 20px; */
+  margin-left: 50px;
   cursor: pointer;
   color: white;
 `;
-
+const QuantityBox = styled.div`
+  position: absolute;
+  left: 23px;
+  bottom: 12px;
+  font-size: 12px;
+  margin-left: 2px;
+`;
 // const Dropdown = styled.select`
 //   /* width: 55px; */
 //   opacity: 0.8;

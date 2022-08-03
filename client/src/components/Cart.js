@@ -41,7 +41,6 @@ const Cart = () => {
             {state.cardList?.length && (
               <div>
                 {state.cardList.map((item) => {
-                  console.log("item", item);
                   return (
                     <div key={item.item_id}>
                       <ItemWrapper>
