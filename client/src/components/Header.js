@@ -7,6 +7,7 @@ import { FaHiking, FaIcons } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
 import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
+import Logo from "../../src/Imgs/Logo.gif";
 
 const Header = () => {
   const {
@@ -31,16 +32,20 @@ const Header = () => {
   return (
     <>
       <Wrapper>
+        <img src={Logo} style={{ width: "30px", borderRadius: "50%" }} />
         <Company to="/">BodyBreak</Company>
         <SearchBar placeholder="What are you looking for..."></SearchBar>
-        <Link to="/cart">
+        <CartTxt>
+          Cart
           <IconDiv>
-            <RiShoppingCartFill
-              style={{ color: "#02A4D3", fontSize: "23px" }}
-            />
-            <QuantityBox>{qty}</QuantityBox>
+            <Link to="/cart">
+              <RiShoppingCartFill
+                style={{ color: "#02A4D3", fontSize: "23px" }}
+              />
+              <QuantityBox>{qty}</QuantityBox>
+            </Link>
           </IconDiv>
-        </Link>
+        </CartTxt>
         {/* <SigninButton>Sign-in</SigninButton> */}
       </Wrapper>
       <Nav>
@@ -151,7 +156,11 @@ const SearchBar = styled.input`
   color: white;
   padding-left: 15px;
 `;
-
+const CartTxt = styled.div`
+  display: flex;
+  align-items: center;
+  color: white;
+`;
 const IconDiv = styled.div`
   display: flex;
   position: relative;
@@ -159,14 +168,15 @@ const IconDiv = styled.div`
   align-items: center;
   /* width:150px; */
   /* font-size: 20px; */
-  margin-left: 50px;
+  margin-left: 5px;
   cursor: pointer;
   color: white;
 `;
 const QuantityBox = styled.div`
   position: absolute;
+  color: white;
   left: 23px;
-  bottom: 12px;
+  bottom: 14px;
   font-size: 12px;
   margin-left: 2px;
 `;
