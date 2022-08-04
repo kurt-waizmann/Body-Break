@@ -24,6 +24,7 @@ const Cart = () => {
   };
 
   const nav = useNavigate();
+
   //calculate subtotal of all items in cart
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
