@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ConfirmationPage = () => {
   const [confirmation, setConfirmation] = useState(null);
-
+  // This fetch gets all the details regarding an order in our order collection from database.
   useEffect(() => {
     fetch(`/api/order/details`)
       .then((res) => res.json())
@@ -17,6 +17,7 @@ const ConfirmationPage = () => {
     <>
       <Wrapper>
         <InnerWrap>
+          {/* condition rendering for our confirmation page/info */}
           {confirmation && (
             <>
               <Title>Thank you for your purchase!</Title>

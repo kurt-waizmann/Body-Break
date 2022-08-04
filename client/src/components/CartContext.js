@@ -26,7 +26,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const CardConext = createContext(null);
+export const CartConext = createContext(null);
 
 export const CardProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -54,7 +54,7 @@ export const CardProvider = ({ children }) => {
     );
     if (deleteItem) {
       let data = await getDataFromServer("/api/cart/details");
-      data === null && (data = [])
+      data === null && (data = []);
       dispatch({
         type: "Delete_Item_From_Cart",
         items: data,
@@ -91,7 +91,7 @@ export const CardProvider = ({ children }) => {
   };
 
   return (
-    <CardConext.Provider
+    <CartConext.Provider
       value={{
         state,
         actions: {
@@ -103,6 +103,6 @@ export const CardProvider = ({ children }) => {
       }}
     >
       {children}
-    </CardConext.Provider>
+    </CartConext.Provider>
   );
 };

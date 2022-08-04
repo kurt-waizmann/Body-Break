@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { useContext, useEffect } from "react";
-import { CardConext } from "./CardContext";
+import { CartConext } from "./CartContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const {
     state,
     actions: { get_Items, update_item_qty, delete_Item },
-  } = useContext(CardConext);
+  } = useContext(CartConext);
   console.log("hellooo", state.cardList, state);
 
   useEffect(() => {

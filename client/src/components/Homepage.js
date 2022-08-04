@@ -10,7 +10,7 @@ const Homepage = () => {
   const { items } = useContext(AllItemsContext);
   const [suggestions, setSuggestions] = useState([]);
 
-  // Mapping through items for all of the items data then while loop to push a randomly suggested 24 items each time you load homepage.
+  // While loop to push a randomly suggested 24 items each time you load homepage. If statement is so items that are currently out of stock are not put out on display as suggested.
   useEffect(() => {
     const suggested = [];
     while (suggested.length < 24) {
@@ -28,6 +28,7 @@ const Homepage = () => {
         <div>
           <Banner />
           <ImgDiv>
+            {/* Mapping through the suggested 24 items to render them */}
             {suggestions.map((suggestion, key) => (
               <Item suggestion={suggestion} key={key} />
             ))}

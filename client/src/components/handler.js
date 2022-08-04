@@ -10,7 +10,7 @@ export const getDataFromServer = async (Endpoint) => {
     throw window.alert(err.Message);
   }
 };
-//this function for post, patch or upadte
+//this function is for post, patch or upadte
 export const sentDataToServer = async (Endpoint, Method, Body = "") => {
   let success = false;
   const init = {

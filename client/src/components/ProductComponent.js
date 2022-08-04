@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { useContext } from "react";
-import { CardConext } from "./CardContext";
+import { CartConext } from "./CartContext";
 import { v4 as uuidv4, v4 } from "uuid";
 
 const ProductComponent = (item) => {
   const [quantity, setQuantity] = useState(1);
+  //Following code is for grabbing our add_Item() function from CartContext.
   const {
     actions: { add_Item },
-  } = useContext(CardConext);
-
+  } = useContext(CartConext);
+  //Following code is to handle our add to cart button which adds the specific item/qty to cart.
   const cartHandler = (id) => {
     add_Item({ qty: quantity, item_id: id });
-    console.log(quantity, id);
   };
 
   return (
@@ -45,6 +45,7 @@ const ProductComponent = (item) => {
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   >
+                    {/* Mapping through our numInStock for each item so our choice of selecting quantity does not exceed whats actually in stock. It is also whats rendering the quatitys to choose from.*/}
                     {[...Array(item.item.numInStock).keys()].map((i, key) => {
                       key = { key };
                       return <option>{i + 1}</option>;

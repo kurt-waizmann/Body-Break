@@ -6,20 +6,21 @@ import { GiHealthNormal } from "react-icons/gi";
 import { FaHiking, FaIcons } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
 import { useContext, useEffect } from "react";
-import { CardConext } from "./CardContext";
+import { CartConext } from "./CartContext";
 import Logo from "../../src/Imgs/Logo.gif";
 
 const Header = () => {
+  //Following code is for getting get_Items() functions from CartContext
   const {
     state,
     actions: { get_Items },
-  } = useContext(CardConext);
+  } = useContext(CartConext);
   useEffect(() => {
     get_Items();
   }, []);
 
   const nav = useNavigate();
-
+  // Below code is for adding our value beside our cart icon.
   const qty = state.cardList.reduce((accumulator, curValue) => {
     return accumulator + curValue.qty;
   }, 0);

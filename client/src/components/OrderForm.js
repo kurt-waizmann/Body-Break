@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import { CardConext } from "./CardContext";
+import { CartConext } from "./CartContext";
 
 const OrderForm = () => {
   const [creditcard, setCreditcard] = useState();
@@ -11,15 +11,17 @@ const OrderForm = () => {
   const [email, setEmail] = useState();
 
   const navigate = useNavigate();
+  //Following code is for getting our get_Items() function from CartContext.
   const {
     state,
     actions: { get_Items },
-  } = useContext(CardConext);
+  } = useContext(CartConext);
 
+  // useEffect making our get_Items() function only happen/render once.
   useEffect(() => {
     get_Items();
   }, []);
-
+// Following code is to calculate our sum/total for price regarding our items that are currently in cart.
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
@@ -27,7 +29,7 @@ const OrderForm = () => {
 
   const submitFunc = (ev) => {
     ev.preventDefault();
-
+//Post which sends users info to our orders collection in database.
     fetch("/api/order/details", {
       method: "POST",
       body: JSON.stringify({
