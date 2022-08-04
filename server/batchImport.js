@@ -21,20 +21,15 @@ const batchImport = async () => {
         await client.connect();
         // connect to the database (db name is provided as an argument to the function)
         const db = client.db("Group-Project-Watchout");
-        console.log("connected!");
 
+        // inserting into collection
         const result = await db.collection("items").insertMany(items);
 
-        if (result.acknowledged) {
-            console.log(result)
-        } 
-
         } catch (err) {
-        console.log(err.stack);
+
         } finally {
         // close the connection to the database server
         client.close();
-        console.log("disconnected!");
     }
 }
 

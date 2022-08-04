@@ -12,7 +12,6 @@ const getOrderDetails = async (req, res) => {
 
         // connect to the database 
         const db = client.db(dbName);
-        console.log("connected!");
 
         // grabbing from the collection
         const result = (await db.collection("orders").findOne( {}, { sort: { $natural : -1 }}));
@@ -24,13 +23,11 @@ const getOrderDetails = async (req, res) => {
 
     // catch any errors and return info/message
     } catch (err) {
-        console.log(err.stack);
         res.status(500).json({ status: 500, data: req.body, message: err.message });
 
     // close the connection to the database server
     } finally {
         client.close();
-        console.log("disconnected!");
     }
 }
 

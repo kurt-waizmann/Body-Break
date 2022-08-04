@@ -58,13 +58,11 @@ const postOrderAndDeleteCart = async (req, res) => {
     }
     // catch any errors and return info
   } catch (err) {
-    console.log(err.stack);
     res.status(500).json({ status: 500, data: req.body, message: err.message });
 
     // close the connection to the database server
   } finally {
     client.close();
-    console.log("disconnected!");
   }
 };
 
