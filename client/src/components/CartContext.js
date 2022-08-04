@@ -6,9 +6,8 @@ const initialState = {
   cardList: [],
   userId: null, // for Strech goal
 };
-
+//Handles Cart activity from updateAdd, delete, and addData, get all items from Cart.
 const reducer = (state, action) => {
-  console.log("action", action);
   switch (action.type) {
     case "Add_Item_To_Cart": {
       return { ...state, cardList: [...action.items] };
@@ -30,7 +29,6 @@ export const CartConext = createContext(null);
 
 export const CardProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("Meysam state", state);
 
   // this function use for add item into the card
   const add_Item = async (item) => {
@@ -64,12 +62,17 @@ export const CardProvider = ({ children }) => {
   // this function use for Update item qty in the card
   const get_Items = async () => {
     const result = await getDataFromServer("/api/cart/details");
-    console.log("dispatcher", result);
-    if (result !== null)
+    if (result !== null) {
       dispatch({
         type: "Get_Items_From_Cart",
         items: result,
       });
+    } else {
+      dispatch({
+        type: "Get_Items_From_Cart",
+        items: [],
+      });
+    }
   };
 
   // this function use for Update item qty in the card
@@ -79,10 +82,10 @@ export const CardProvider = ({ children }) => {
       "PATCH",
       body
     );
-    console.log("dispatcher", updateItem);
+
     if (updateItem) {
       const result = await getDataFromServer("/api/cart/details");
-      console.log("update", result);
+
       dispatch({
         type: "Update_Item's_Qty",
         items: result,

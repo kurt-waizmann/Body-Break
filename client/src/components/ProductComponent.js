@@ -37,7 +37,7 @@ const ProductComponent = (item) => {
             {item.item.numInStock}
           </NumInStock>
           {item.item.numInStock > 0 ? (
-            <CartWrapper>
+            <CartWrapper key={v4()}>
               <>
                 <Quantity>
                   <label>Quantity:</label>
@@ -46,9 +46,8 @@ const ProductComponent = (item) => {
                     onChange={(e) => setQuantity(e.target.value)}
                   >
                     {/* Mapping through our numInStock for each item so our choice of selecting quantity does not exceed whats actually in stock. It is also whats rendering the quatitys to choose from.*/}
-                    {[...Array(item.item.numInStock).keys()].map((i, key) => {
-                      key = { key };
-                      return <option>{i + 1}</option>;
+                    {[...Array(item.item.numInStock).keys()].map((i) => {
+                      return <option key={v4()}>{i + 1}</option>;
                     })}
                   </Select>
                 </Quantity>

@@ -3,6 +3,7 @@ import { RiShoppingCartFill } from "react-icons/ri";
 import { useState } from "react";
 import { CartConext } from "./CartContext";
 import { useContext } from "react";
+import { v4 as uuidv4, v4 } from "uuid";
 
 const Item = ({ suggestion }) => {
   const [quantity, setQuantity] = useState(1);
@@ -47,7 +48,7 @@ const Item = ({ suggestion }) => {
                 {/* Mapping through our numInStock for each item so our choice of selecting quantity does not exceed whats actually in stock. It is also whats rendering the quatitys to choose from.*/}
                 <Select value={quantity} onChange={(e) => submitFunc(e)}>
                   {[...Array(suggestion.numInStock).keys()].map((i) => {
-                    return <option>{i + 1}</option>;
+                    return <option key={v4()}>{i + 1}</option>;
                   })}
                 </Select>
               </Quantity>

@@ -21,7 +21,7 @@ const OrderForm = () => {
   useEffect(() => {
     get_Items();
   }, []);
-// Following code is to calculate our sum/total for price regarding our items that are currently in cart.
+  // Following code is to calculate our sum/total for price regarding our items that are currently in cart.
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
@@ -29,7 +29,7 @@ const OrderForm = () => {
 
   const submitFunc = (ev) => {
     ev.preventDefault();
-//Post which sends users info to our orders collection in database.
+    //Post which sends users info to our orders collection in database.
     fetch("/api/order/details", {
       method: "POST",
       body: JSON.stringify({
@@ -67,7 +67,7 @@ const OrderForm = () => {
                     autocomplete="cc-number"
                     maxlength="16"
                     placeholder="xxxx xxxx xxxx xxxx"
-                    autoFocus
+                    // autoFocus
                     required
                     onChange={(ev) => setCreditcard(ev.target.value)}
                   />

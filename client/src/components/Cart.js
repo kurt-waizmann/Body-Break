@@ -9,12 +9,9 @@ const Cart = () => {
     state,
     actions: { get_Items, update_item_qty, delete_Item },
   } = useContext(CartConext);
-  console.log("hellooo", state.cardList, state);
-
   //get items from context
   useEffect(() => {
     get_Items();
-    // console.log("useEffect", state.cardList);
   }, []);
 
   //update numInStock if quantity bought is less than numInStock
@@ -83,7 +80,9 @@ const Cart = () => {
               </div>
             )}
             <Subtotal>Subtotal: ${sum}</Subtotal>
-            <Button onClick={() => nav("/orderform")}>Complete Order</Button>
+            {state.cardList.length !== 0 && (
+              <Button onClick={() => nav("/orderform")}>Complete Order</Button>
+            )}
           </Summary>
         </InnerWrap>
       </Wrapper>
