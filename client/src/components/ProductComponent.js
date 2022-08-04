@@ -13,15 +13,14 @@ const ProductComponent = (item) => {
 
   const cartHandler = (id) => {
     add_Item({ qty: quantity, item_id: id });
-    console.log(quantity, id)
+    console.log(quantity, id);
   };
-
 
   return (
     <>
       <Wrapper key={v4()}>
         <ImageWrap>
-        <Imgs src={item.item.imageSrc} alt="item.item image" />
+          <Imgs src={item.item.imageSrc} alt="item.item image" />
         </ImageWrap>
         <ProductInfo>
           <ProductName>{item.item.name}</ProductName>
@@ -33,10 +32,6 @@ const ProductComponent = (item) => {
             <Span>Price:</Span>
             {item.item.price}
           </Price>
-          {/* <BodyLocation>
-            <Span>Body Location:</Span>
-            {item.item.body_location}
-          </BodyLocation> */}
           <NumInStock>
             <Span>Items in stock:</Span>
             {item.item.numInStock}
@@ -46,20 +41,15 @@ const ProductComponent = (item) => {
               <>
                 <Quantity>
                   <label>Quantity:</label>
-                  <Select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
-                    { [...Array(item.item.numInStock).keys()].map(i=>{
-                      return <option>{i+1}</option>
-                    })}
-
-                    
-                  </Select>
-                  {/* <NumberInput
-                    type="number"
+                  <Select
                     value={quantity}
-                    min={1}
-                    max={item.item.numInStock}
-                    onChange={(e) => submitFunc(e)}
-                  ></NumberInput> */}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  >
+                    {[...Array(item.item.numInStock).keys()].map((i, key) => {
+                      key = { key };
+                      return <option>{i + 1}</option>;
+                    })}
+                  </Select>
                 </Quantity>
                 <AddToCart
                   disabled={false}
@@ -72,7 +62,6 @@ const ProductComponent = (item) => {
             </CartWrapper>
           ) : (
             <OutOfStock>
-              {/* <StyledP>Item is temporarily</StyledP> */}
               <StyledP>Out of stock</StyledP>
             </OutOfStock>
           )}
@@ -101,7 +90,7 @@ const ImageWrap = styled.div`
   align-items: center;
   border-radius: 4px;
   background-color: white;
-`
+`;
 const Imgs = styled.img`
   border-radius: 4px;
   height: 120px;
@@ -112,7 +101,7 @@ const ProductInfo = styled.div`
 `;
 const ProductName = styled.p`
   margin-bottom: 5px;
-  color: #80B3C4;
+  color: #80b3c4;
 `;
 const Brand = styled.p`
   flex-direction: row;
@@ -122,9 +111,7 @@ const Price = styled.p`
   margin: 0px 0px 5px 0px;
   width: 50px;
 `;
-const BodyLocation = styled.p`
-  margin: 0px 0px 5px 0px;
-`;
+
 const NumInStock = styled.p`
   margin: 0px 0px 5px 0px;
 `;
@@ -137,7 +124,7 @@ const AddToCart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #8E8B8B;
+  background: #8e8b8b;
   text-decoration: none;
   width: 100%;
   height: 30px;
@@ -145,7 +132,7 @@ const AddToCart = styled.button`
   border-radius: 4px;
   margin-top: 10px;
   cursor: pointer;
-  &:active{
+  &:active {
     background-color: #777474;
   }
 `;
@@ -165,14 +152,13 @@ const OutOfStock = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #FF9F00;
+  background: #ff9f00;
   text-decoration: none;
   border: none;
   border-radius: 4px;
   padding: 5px;
   cursor: not-allowed;
   opacity: 0.5;
-  /* margin-top: 30px; */
 `;
 const StyledP = styled.p`
   font-size: 14px;
@@ -192,22 +178,14 @@ const Quantity = styled.form`
   cursor: pointer;
 `;
 
-const NumberInput = styled.input`
-  /* width: 50px; */
-  /* height: 40px; */
-  border-radius: 4px;
-  border: none;
-  margin-left: 40px;
-`;
-
 const Select = styled.select`
   width: 40px;
   height: 20px;
   margin-left: 20px;
   border: none;
   border-radius: 4px;
-  background-color: #8E8B8B;
+  background-color: #8e8b8b;
   color: white;
   cursor: pointer;
-`
+`;
 export default ProductComponent;
