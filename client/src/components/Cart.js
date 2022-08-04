@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import Header from "./Header";
 import { useContext, useEffect } from "react";
 import { CardConext } from "./CardContext";
-// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
@@ -34,7 +32,6 @@ const Cart = () => {
   return (
     <>
       <Wrapper>
-        <Header />
         <InnerWrap>
           <Summary>
             <Title>Shopping Cart</Title>

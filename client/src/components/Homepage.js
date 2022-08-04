@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Header from "./Header";
 import Banner from "./Banner";
 import { useContext } from "react";
 import { AllItemsContext } from "./AllItemsContext";
@@ -27,7 +26,6 @@ const Homepage = () => {
     <>
       <Container>
         <div>
-          <Header />
           <Banner />
           <ImgDiv>
             {suggestions.map((suggestion, key) => (

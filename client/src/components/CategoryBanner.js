@@ -1,4 +1,3 @@
-import Imgs from "../../src/Imgs/Do-it.png";
 import medical from "../../src/Imgs/Medical.png";
 import lifestyle from "../../src/Imgs/Lifestyle.png";
 import fitness from "../../src/Imgs/Fitness.png";
@@ -7,7 +6,7 @@ import allitems from "../../src/Imgs/All-Items.png";
 import styled from "styled-components";
 
 const CategoryBanner = ({ category }) => {
-//   console.log("category", category);
+  
   if (category === "medical") {
     return (
       <>

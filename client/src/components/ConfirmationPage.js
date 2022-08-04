@@ -1,120 +1,131 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "./Header";
 import { Link } from "react-router-dom";
 
-
-
 const ConfirmationPage = () => {
-    const [confirmation, setConfirmation] = useState(null);
+  const [confirmation, setConfirmation] = useState(null);
 
-    useEffect(() => {
-        fetch(`/api/order/details`)
-        .then((res) => res.json())
-        .then((data) => {
-        setConfirmation(data.data)
-        })
-    },[])
+  useEffect(() => {
+    fetch(`/api/order/details`)
+      .then((res) => res.json())
+      .then((data) => {
+        setConfirmation(data.data);
+      });
+  }, []);
 
-    console.log(confirmation)
-    return (
-        <>
-        <Wrapper>
-            <Header />
-            <InnerWrap>
-                    {confirmation && <>
-                    <Title>Thank you for your purchase!</Title>
-                    <Summary>
-                        <OrderSummary>
-                            
-                            <Order>
-                            <div>Confimation Number: <Details>{confirmation._id}</Details></div>
-                            <span>Number of Items: <Details>{confirmation.items.length}</Details> </span>
-                            <span>Cost: <Details>$ {confirmation.cost}</Details> </span>
-                            </Order>
-                            <Line/>
-                            <Order>
-                            <div>Name: <Details>{confirmation.firstName} {confirmation.lastName}</Details> </div>
-                            <div>Address: <Details>{confirmation.address}</Details> </div>
-                            <div>Email: <Details>{confirmation.email}</Details> </div>
-                            </Order>
-                        </OrderSummary>
-                    </Summary>
-                    <Button to={"/"}>Return to Homepage</Button>
-                    </>}
-            </InnerWrap>
-        </Wrapper>
-        </>
-    )
-}
+  return (
+    <>
+      <Wrapper>
+        <InnerWrap>
+          {confirmation && (
+            <>
+              <Title>Thank you for your purchase!</Title>
+              <Summary>
+                <OrderSummary>
+                  <Order>
+                    <div>
+                      Confimation Number: <Details>{confirmation._id}</Details>
+                    </div>
+                    <span>
+                      Number of Items:{" "}
+                      <Details>{confirmation.items.length}</Details>{" "}
+                    </span>
+                    <span>
+                      Cost: <Details>$ {confirmation.cost}</Details>{" "}
+                    </span>
+                  </Order>
+                  <Line />
+                  <Order>
+                    <div>
+                      Name:{" "}
+                      <Details>
+                        {confirmation.firstName} {confirmation.lastName}
+                      </Details>{" "}
+                    </div>
+                    <div>
+                      Address: <Details>{confirmation.address}</Details>{" "}
+                    </div>
+                    <div>
+                      Email: <Details>{confirmation.email}</Details>{" "}
+                    </div>
+                  </Order>
+                </OrderSummary>
+              </Summary>
+              <Button to={"/"}>Return to Homepage</Button>
+            </>
+          )}
+        </InnerWrap>
+      </Wrapper>
+    </>
+  );
+};
 
 export default ConfirmationPage;
 
-
 const Wrapper = styled.div`
-    font-family: "Poppins", sans-serif;
-    background-color: #1c1b1b;
-    color: white;
-    height: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: #1c1b1b;
+  color: white;
+  height: 100%;
 `;
 
 const InnerWrap = styled.div`
-    height: 87%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
+  height: 87%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Summary = styled.div`
-    border-radius: 3%;
-    background-color: #313131;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-`
+  border-radius: 3%;
+  background-color: #313131;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+`;
 const Title = styled.div`
-    font-size: 30px;
-    color: #04d9ff;
-    margin-bottom: 20px;
-`
+  font-size: 30px;
+  color: #04d9ff;
+  margin-bottom: 20px;
+`;
 const OrderSummary = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const Order = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 
 const Details = styled.span`
-    color:#04d9ff;
-    margin: 0 4px 0 4px;
-`
+  color: #04d9ff;
+  margin: 0 4px 0 4px;
+`;
 
 const Line = styled.div`
-    border-bottom: 2px solid #04d9ff;
-`
+  border-bottom: 2px solid #04d9ff;
+`;
 
 const Button = styled(Link)`
-    text-decoration: none;
-    background-color: inherit;
-    border: none;
-    color:#878787;
-    font-size: 15px;
-    height: 40px;
-    margin: 20px;
-    cursor: pointer;
-    position: relative;
-    :after {
+  text-decoration: none;
+  background-color: inherit;
+  border: none;
+  color: #878787;
+  font-size: 15px;
+  height: 40px;
+  margin: 20px;
+  cursor: pointer;
+  position: relative;
+  :after {
     content: "";
     position: absolute;
     left: 0;
@@ -130,4 +141,4 @@ const Button = styled(Link)`
     transform: scaleX(1);
     transform-origin: left;
   }
-`
+`;

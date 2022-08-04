@@ -17,17 +17,12 @@ const Header = () => {
   useEffect(() => {
     get_Items();
   }, []);
-  // const { setDropdownSelection } = useContext(AllItemsContext);
+
   const nav = useNavigate();
-  // Handler for our Dropdown/select
 
   const qty = state.cardList.reduce((accumulator, curValue) => {
     return accumulator + curValue.qty;
   }, 0);
-
-  const handleChange = (value) => {
-    nav(value);
-  };
 
   return (
     <>
@@ -46,17 +41,8 @@ const Header = () => {
             </Link>
           </IconDiv>
         </CartTxt>
-        {/* <SigninButton>Sign-in</SigninButton> */}
       </Wrapper>
       <Nav>
-        {/* <Dropdown onChange={(ev) => handleChange(ev.target.value)} required>
-          <option value={""} disabled selected hidden>
-            All
-          </option>
-          <option value="/allitems">All Items</option>
-          <option value="/allcategories">All Catagories</option>
-          <option value="/allbrands">All Brands</option>
-        </Dropdown> */}
         <Icon onClick={() => nav("/allitems")}>
           <Categories>All Products </Categories>
           <BiGridHorizontal style={{ marginLeft: "10px" }} />
@@ -125,26 +111,6 @@ const Company = styled(Link)`
   text-decoration: none;
 `;
 
-const SigninButton = styled.button`
-  border: 1px solid;
-  border-color: #02a4d3;
-  background-color: black;
-  color: #04d9ff;
-  margin-right: 20px;
-  border-radius: 5px;
-  width: 100px;
-  height: 30px;
-  font-weight: bold;
-  font-family: "Poppins", sans-serif;
-  :hover {
-    cursor: pointer;
-    color: black;
-    background-color: #02a4d3;
-    transition-timing-function: ease-in-out;
-    transition-duration: 450ms;
-  }
-`;
-
 const SearchBar = styled.input`
   border: none;
   border-radius: 5px;
@@ -166,8 +132,6 @@ const IconDiv = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
-  /* width:150px; */
-  /* font-size: 20px; */
   margin-left: 5px;
   cursor: pointer;
   color: white;
@@ -180,22 +144,6 @@ const QuantityBox = styled.div`
   font-size: 12px;
   margin-left: 2px;
 `;
-// const Dropdown = styled.select`
-//   /* width: 55px; */
-//   opacity: 0.8;
-//   cursor: pointer;
-//   font-family: "Poppins", sans-serif;
-//   font-weight: bold;
-//   border: none;
-//   background-color: #313131;
-//   color: white;
-//   :hover {
-//     text-shadow: 0 0 0.125em #02a4d3 hsl(0 0% 100% / 0.3), 0 0 0.35em #04d9ff;
-//     box-shadow: 0 0 0.5em 0 #02a4d3, inset 0 0 0.5em 0 #04d9ff;
-//     transition-timing-function: ease-in-out;
-//     transition-duration: 300ms;
-//   }
-// `;
 
 const Nav = styled.nav`
   display: flex;
