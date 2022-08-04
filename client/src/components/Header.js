@@ -5,9 +5,11 @@ import { FiActivity } from "react-icons/fi";
 import { GiHealthNormal } from "react-icons/gi";
 import { FaHiking, FaIcons } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardConext } from "./CardContext";
 import Logo from "../../src/Imgs/Logo.gif";
+import { AllItemsContext } from "./AllItemsContext";
+import { v4 as uuidv4, v4 } from "uuid";
 
 const Header = () => {
   const {
@@ -17,7 +19,7 @@ const Header = () => {
   useEffect(() => {
     get_Items();
   }, []);
-  // const { setDropdownSelection } = useContext(AllItemsContext);
+
   const nav = useNavigate();
   // Handler for our Dropdown/select
 
@@ -29,12 +31,80 @@ const Header = () => {
     nav(value);
   };
 
+  //get items from context
+  const { items, setSearchId } = useContext(AllItemsContext);
+  //set value of search input
+  const [value, setValue] = useState("");
+  console.log(value);
+  //create searchResults
+  const searchResults = items.filter((result, index) => {
+    // console.log("index", index);
+    //case insensitive and matches anywhere in word
+    return result.name.toLowerCase().includes(value.toLowerCase());
+  });
+  //Create first half of search suggestion
+  const firstHalf = (title) => {
+    //find index of where suggestion and searchbar value overlap
+    const index = title.toLowerCase().indexOf(value.toLowerCase());
+    //slice from beginning of title to the amount of characters typed into the searchbar and return it.
+    return title.slice(0, index + value.length);
+  };
+  //Second half of search suggestion
+  const secondHalf = (title) => {
+    //find index of where suggestion and searchbar value overlap
+    const index = title.toLowerCase().indexOf(value.toLowerCase());
+    //slice from overlap point to end of string and return new string
+    return title.slice(index + value.length);
+  };
+  const handleSelect = (result, _id) => {
+    setSearchId(_id);
+    nav("/SearchComponent");
+  };
   return (
     <>
       <Wrapper>
         <img src={Logo} style={{ width: "30px", borderRadius: "50%" }} />
         <Company to="/">BodyBreak</Company>
-        <SearchBar placeholder="What are you looking for..."></SearchBar>
+        <SearchDiv>
+          <SearchBar
+            type="text"
+            value={value}
+            onChange={(ev) => {
+              setValue(ev.target.value);
+            }}
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                setValue("");
+              }
+            }}
+            placeholder="What are you looking for..."
+          ></SearchBar>
+          <SearchResults
+            style={{ display: value.length < 2 ? "none" : "flex" }}
+          >
+            {searchResults.map((item, index) => {
+              console.log("item", item);
+              return (
+                <Result
+                  key={v4()}
+                  onClick={(ev) => handleSelect(ev.target.innerText, item._id)}
+                >
+                  <span key={firstHalf}>
+                    {firstHalf(item.name)}
+                    <Predictions key={secondHalf}>
+                      {secondHalf(item.name)}
+                    </Predictions>
+                    {/* <em> in</em>  */}
+                    {/* <Catagory key={categories[catId].name}>
+                    {" "}
+                    {categories[catId].name}
+                  </Catagory>  */}
+                  </span>
+                </Result>
+              );
+            })}
+          </SearchResults>
+        </SearchDiv>
         <CartTxt>
           Cart
           <IconDiv>
@@ -81,7 +151,40 @@ const Header = () => {
     </>
   );
 };
-
+const SearchDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const SearchResults = styled.ul`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  color: white;
+  background-color: #313131;
+  margin: 0px 0px;
+  border: none;
+  /* box-shadow: 0px 2px 8px 3px #d1d1d1; */
+  width: auto;
+  height: 300px;
+  margin-top: 250px;
+  /* margin-left: 31.5%; */
+  padding: 10px;
+  z-index: 10;
+`;
+const Result = styled.li`
+  display: flex;
+  /* overflow: hidden; */
+  font-size: 14px;
+  color: white;
+  margin-bottom: 5px;
+  padding: 5px;
+  &:hover {
+    background-color: #8e8b8b;
+  }
+`;
+const Predictions = styled.span`
+  font-weight: bold;
+`;
 const Icon = styled.div`
   display: flex;
   flex-direction: row;
