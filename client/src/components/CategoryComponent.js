@@ -26,7 +26,7 @@ const CategoryComponent = () => {
                 return <ProductComponent key={v4()} item={item} />;
               })
             : categoryItems?.length > 0 &&
-              categoryItems.map((item) => {
+              categoryItems.map((item, index) => {
                 return <ProductComponent key={v4()} item={item} />;
               })}
         </Container>

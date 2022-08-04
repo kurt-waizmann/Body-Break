@@ -20,6 +20,8 @@ const Header = () => {
   useEffect(() => {
     get_Items();
   }, []);
+  //get items from context
+  const { items, setSearchId } = useContext(AllItemsContext);
 
   const nav = useNavigate();
 
@@ -28,13 +30,15 @@ const Header = () => {
     return accumulator + curValue.qty;
   }, 0);
 
-  //get items from context
-  const { items, setSearchId } = useContext(AllItemsContext);
+  //----------------SEARCH BAR CODE ------------------------
+
   //set value of search input
   const [value, setValue] = useState("");
 
   // make group for search value
   const [groups, setGroups] = useState([]);
+
+  //create catagories to categorize search results
   const calegorys = [
     "Entertainment",
     "Fitness",
@@ -45,6 +49,7 @@ const Header = () => {
     "Pets and Animals",
   ];
 
+  //group result by category
   useEffect(() => {
     if (searchResults.length > 0) {
       setGroups(
@@ -58,37 +63,44 @@ const Header = () => {
       );
     }
   }, [value.length]);
+
   //create searchResults
   const searchResults = items.filter((result, index) => {
     //case insensitive and matches anywhere in word
     return result.name.toLowerCase().includes(value.toLowerCase());
   });
-  //Create first half of search item
+
+  //SEARCH RESULT FORMATTING-----------------------
+
+  //formats before search value
   const firstHalf = (title) => {
     //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from beginning of title to the amount of characters typed into the searchbar and return it.
     return title.slice(0, index - 1);
   };
-  //Second half of search item
+  //formats search value
   const secondHalf = (title) => {
     //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from overlap point to end of string and return new string
-    return title.slice(index , index + value.length);
+    return title.slice(index, index + value.length);
   };
-
+  //formats search result after search value
   const thirdHalf = (title) => {
     //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from overlap point to end of string and return new string
-    return title.slice(index + value.length ) ;
+    return title.slice(index + value.length);
   };
+
+  //When search result is clicked, navigate to SearchComponent page with product information.
   const handleSelect = (result, _id) => {
     setSearchId(_id);
     setValue("");
     nav("/SearchComponent");
   };
+
   return (
     <>
       <Wrapper>
@@ -98,9 +110,8 @@ const Header = () => {
           <SearchBar
             type="text"
             value={value}
-
-              onChange={(ev) => {
-                setValue(ev.target.value);
+            onChange={(ev) => {
+              setValue(ev.target.value);
             }}
             onKeyDown={(ev) => {
               if (ev.key === "Escape") {
@@ -115,14 +126,12 @@ const Header = () => {
             >
               {groups.map((group, index) => {
                 return (
-                  <ul>
-                    {Object.keys(group).map((category) => {
+                  <ul key={v4()}>
+                    {Object.keys(group).map((category, index) => {
                       if (group[category].length > 0) {
                         return (
-                          <ul>
-                            <Category>
-                              {category}
-                            </Category>
+                          <ul key={v4()}>
+                            <Category>{category}</Category>
                             {group[category].map((item) => {
                               return (
                                 <Result
@@ -131,24 +140,22 @@ const Header = () => {
                                     handleSelect(ev.target.innerText, item._id)
                                   }
                                 >
-                                  
                                   <Span key={firstHalf}>
                                     {firstHalf(item.name)}
                                     <Predictions key={secondHalf}>
                                       {secondHalf(item.name)}
                                     </Predictions>
-                                      {thirdHalf(item.name)}
+                                    {thirdHalf(item.name)}
                                   </Span>
                                 </Result>
                               );
                             })}
-                            
                           </ul>
-                        )
+                        );
                       }
                     })}
                   </ul>
-                )
+                );
               })}
             </SearchResults>
           </SearchDiv>
@@ -197,21 +204,22 @@ const Category = styled.span`
   border-bottom: 2px solid white;
   font-weight: bold;
   padding-bottom: 5px;
-`
+`;
 const Container = styled.div`
   position: relative;
 `;
 const Span = styled.span`
-  color: white ;
+  color: white;
 `;
 const SearchDiv = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 800px;
-  height: 500px;
+  max-height: 500px;
   overflow: auto;
   border-radius: 4px;
+  z-index: 5;
 `;
 const SearchResults = styled.ul`
   display: flex;

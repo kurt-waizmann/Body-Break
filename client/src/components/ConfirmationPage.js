@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { CartConext } from "./CartContext";
 
 const ConfirmationPage = () => {
+  const {
+    actions: { get_Items },
+  } = useContext(CartConext);
   const [confirmation, setConfirmation] = useState(null);
   // This fetch gets all the details regarding an order in our order collection from database.
   useEffect(() => {
@@ -11,6 +15,7 @@ const ConfirmationPage = () => {
       .then((data) => {
         setConfirmation(data.data);
       });
+    get_Items();
   }, []);
 
   return (
@@ -108,12 +113,12 @@ const Order = styled.div`
 `;
 
 const Details = styled.span`
-  color: #04d9ff;
+  color: #02a4d3;
   margin: 0 4px 0 4px;
 `;
 
 const Line = styled.div`
-  border-bottom: 2px solid #04d9ff;
+  border-bottom: 2px solid #02a4d3;
 `;
 
 const Button = styled(Link)`
@@ -133,7 +138,7 @@ const Button = styled(Link)`
     bottom: 0;
     width: 100%;
     height: 2px;
-    border-bottom: 1px solid #04d9ff;
+    border-bottom: 1px solid #02a4d3;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 400ms ease-in-out;
