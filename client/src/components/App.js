@@ -7,12 +7,14 @@ import Footer from "./Footer";
 import OrderForm from "./OrderForm";
 import ConfirmationPage from "./ConfirmationPage";
 import SearchComponent from "./SearchComponent";
+import Header from "./Header";
 
 const App = () => {
   return (
     <>
       <Router>
         <GlobalStyles />
+        <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/:category" element={<CategoryComponent />} />

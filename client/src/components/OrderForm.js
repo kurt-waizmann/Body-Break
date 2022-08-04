@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { useState, useContext, useEffect } from "react";
-import { CardConext } from "./CardContext";
-
+import { CartConext } from "./CartContext";
 
 const OrderForm = () => {
   const [creditcard, setCreditcard] = useState();
@@ -14,37 +11,28 @@ const OrderForm = () => {
   const [email, setEmail] = useState();
 
   const navigate = useNavigate();
-  const {state, actions: { get_Items }} = useContext(CardConext);
+  //Following code is for getting our get_Items() function from CartContext.
+  const {
+    state,
+    actions: { get_Items },
+  } = useContext(CartConext);
 
+  // useEffect making our get_Items() function only happen/render once.
   useEffect(() => {
-    get_Items()
-  }, [])
-
+    get_Items();
+  }, []);
+// Following code is to calculate our sum/total for price regarding our items that are currently in cart.
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
   }, 0);
 
-
   const submitFunc = (ev) => {
     ev.preventDefault();
-
-    console.log("---------------Meysam 2---------------------------")
-    console.log({
-      // _id: orderId,
-      creditCard: creditcard,
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      email: email,
-      items: state.cardList,
-      cost: sum,
-    })
-    // const orderId = uuidv4();
+//Post which sends users info to our orders collection in database.
     fetch("/api/order/details", {
       method: "POST",
       body: JSON.stringify({
-        // _id: orderId,
         creditCard: creditcard,
         firstName: firstName,
         lastName: lastName,
@@ -52,7 +40,7 @@ const OrderForm = () => {
         email: email,
         items: state.cardList,
         cost: sum,
-        cartList: [...state.cardList]
+        cartList: [...state.cardList],
       }),
       headers: { "Content-Type": "application/json" },
     })
@@ -65,7 +53,6 @@ const OrderForm = () => {
   return (
     <>
       <Wrapper>
-        <Header />
         <Body>
           <InnerWrap>
             <PersonDetails>
@@ -194,50 +181,6 @@ const Input = styled.input`
   text-decoration: none;
   width: 200px;
 `;
-
-const CostDetails = styled.div`
-  flex: 1;
-  height: 500px;
-  border-radius: 3%;
-  background-color: #313131;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-`;
-
-// const Button = styled.button`
-//   color: #04d9ff;
-//   height: 40px;
-//   width: 200px;
-//   border: 1px solid;
-//   border-color: #04d9ff;
-//   background-color: black;
-//   border-radius: 5px;
-//   :before {
-//     pointer-events: none;
-//     content: "";
-//     position: absolute;
-//     background: #04d9ff;
-//     top: 15%;
-//     left: 72%;
-//     right: 0;
-//     height: 20px;
-//     width: 30px;
-//     transform: perspective(1em) rotateX(40deg) scale(0.5, 0.6);
-//     filter: blur(1em);
-//   }
-//   :hover {
-//     cursor: pointer;
-//     color: black;
-//     background-color: #04d9ff;
-//     transition-timing-function: ease-in-out;
-//     transition-duration: 400ms;
-//   }
-// `;
 
 const SubInput = styled.input`
   color: #04d9ff;

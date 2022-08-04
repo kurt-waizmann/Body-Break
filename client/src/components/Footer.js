@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FaAngleUp } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -14,7 +13,6 @@ const Wrapper = styled.footer`
   position: relative;
   flex-direction: column;
   height: 88px;
-  /* padding: 80px 0px; */
   background: #030303;
 `;
 

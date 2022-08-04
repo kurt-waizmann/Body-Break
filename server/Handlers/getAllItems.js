@@ -5,8 +5,8 @@ const dbName = "Group-Project-Watchout";
 
 
 const getAllItems = async (req, res) => {
-    //jon items and companies collections by companyId
-    const query = [
+  // query variable
+  const query = [
         {
         $lookup: {
           from: 'companies',
@@ -35,7 +35,6 @@ const getAllItems = async (req, res) => {
 
         // connect to the database 
         const db = client.db(dbName);
-        console.log("connected!");
 
         // grabbing from the collection
         const result = (await db.collection("items").aggregate(query).toArray());
@@ -47,13 +46,11 @@ const getAllItems = async (req, res) => {
 
     // catch any errors and return info/message
     } catch (err) {
-        console.log(err.stack);
         res.status(500).json({ status: 500, data: req.body, message: err.message });
 
     // close the connection to the database server
     } finally {
         client.close();
-        console.log("disconnected!");
     }
 }
 

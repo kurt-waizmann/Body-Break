@@ -10,8 +10,9 @@ const Banner = () => {
       </BannerImg>
     </>
   );
-};
+}; 
 
+//img div
 const BannerImg = styled.div`
   display: flex;
   justify-content: center;
@@ -19,7 +20,7 @@ const BannerImg = styled.div`
   margin-bottom: 0px;
   margin-top: 20px;
 `;
-
+//img element
 const Img = styled.img`
   border-radius: 4px;
 `;

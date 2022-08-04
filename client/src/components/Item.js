@@ -1,35 +1,24 @@
 import styled from "styled-components";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { useState } from "react";
-import { CardConext } from "./CardContext";
+import { CartConext } from "./CartContext";
 import { useContext } from "react";
-import { v4 as uuidv4, v4 } from "uuid";
-
 
 const Item = ({ suggestion }) => {
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const {
     actions: { add_Item },
-  } = useContext(CardConext);
-
+  } = useContext(CartConext);
+  //Following code is to handle our add to cart button which adds the specific item/qty to cart.
   const cartHandler = (id) => {
     add_Item({ qty: quantity, item_id: id });
-    console.log(quantity, id)
   };
-
+  //Following code is for selecting our quantity on each item.
   const submitFunc = (e) => {
     e.preventDefault();
     setQuantity(e.target.value);
   };
-
-  const dropDowm = (qty) => {
-    const menu = []
-    for (let i = 0; i < qty; i++) {
-      menu.push(<option value={quantity} key={v4()} >{i+1}</option>) 
-    }
-    return menu;
-  }
 
   return (
     <Wrapper key={suggestion._id}>
@@ -46,10 +35,6 @@ const Item = ({ suggestion }) => {
           <Span>Price:</Span>
           {suggestion.price}
         </Price>
-        {/* <BodyLocation>
-          <Span>Body Location:</Span>
-          {suggestion.body_location}
-        </BodyLocation> */}
         <NumInStock>
           <Span>Available in stock:</Span>
           {suggestion.numInStock}
@@ -59,21 +44,17 @@ const Item = ({ suggestion }) => {
             <>
               <Quantity>
                 Quantity:
-                <Select onChange={(e) => submitFunc(e)}>
-                    {dropDowm(suggestion.numInStock)}
-                  </Select>
-                {/* <NumberInput
-                  type="number"
-                  min={1}
-                  max={suggestion.numInStock}
-                  onChange={(e) => submitFunc(e)}
-                  required
-                ></NumberInput> */}
+                {/* Mapping through our numInStock for each item so our choice of selecting quantity does not exceed whats actually in stock. It is also whats rendering the quatitys to choose from.*/}
+                <Select value={quantity} onChange={(e) => submitFunc(e)}>
+                  {[...Array(suggestion.numInStock).keys()].map((i) => {
+                    return <option>{i + 1}</option>;
+                  })}
+                </Select>
               </Quantity>
               <AddToCart
-              disabled={false}
-              onClick={() => cartHandler(suggestion._id)}
-            >
+                disabled={false}
+                onClick={() => cartHandler(suggestion._id)}
+              >
                 <CartSpan>Add To Cart</CartSpan>
                 <RiShoppingCartFill />
               </AddToCart>
@@ -81,7 +62,6 @@ const Item = ({ suggestion }) => {
           </CartWrapper>
         ) : (
           <OutOfStock>
-            {/* <StyledP>Item is temporarily</StyledP> */}
             <StyledP>Out of stock</StyledP>
           </OutOfStock>
         )}
@@ -109,7 +89,7 @@ const ImageWrap = styled.div`
   align-items: center;
   border-radius: 4px;
   background-color: white;
-`
+`;
 
 const Imgs = styled.img`
   border-radius: 4px;
@@ -121,8 +101,7 @@ const ProductInfo = styled.div`
 `;
 const ProductName = styled.p`
   margin-bottom: 5px;
-  color: #80B3C4;
-
+  color: #80b3c4;
 `;
 const Brand = styled.p`
   flex-direction: row;
@@ -132,9 +111,7 @@ const Price = styled.p`
   margin: 0px 0px 5px 0px;
   width: 50px;
 `;
-const BodyLocation = styled.p`
-  margin: 0px 0px 5px 0px;
-`;
+
 const NumInStock = styled.p`
   margin: 0px 0px 5px 0px;
 `;
@@ -148,7 +125,7 @@ const AddToCart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #8E8B8B;
+  background: #8e8b8b;
   text-decoration: none;
   width: 100%;
   height: 30px;
@@ -156,7 +133,7 @@ const AddToCart = styled.button`
   border-radius: 4px;
   margin-top: 10px;
   cursor: pointer;
-  &:active{
+  &:active {
     background-color: #777474;
   }
 `;
@@ -176,7 +153,7 @@ const OutOfStock = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #FF9F00;
+  background: #ff9f00;
   text-decoration: none;
   border: none;
   border-radius: 4px;
@@ -187,18 +164,7 @@ const OutOfStock = styled.div`
 const StyledP = styled.p`
   font-size: 14px;
 `;
-//OLD CODE
-// const Quantity = styled.form`
-//   display: flex;
-//   align-items: center;
-//   background: #605d5d;
-//   text-decoration: none;
-//   border: none;
-//   border-radius: 4px;
-//   margin-top: 20px;
-//   width: fit-content;
-//   cursor: pointer;
-// `;
+
 const Quantity = styled.form`
   display: flex;
   font-size: 14px;
@@ -213,13 +179,6 @@ const Quantity = styled.form`
   padding: 10px;
   cursor: pointer;
 `;
-const NumberInput = styled.input`
-  /* width: 50px; */
-  /* height: 40px; */
-  border-radius: 4px;
-  border: none;
-  margin-left: 40px;
-`;
 
 const Select = styled.select`
   width: 40px;
@@ -227,8 +186,8 @@ const Select = styled.select`
   margin-left: 20px;
   border: none;
   border-radius: 4px;
-  background-color: #8E8B8B;
+  background-color: #8e8b8b;
   color: white;
   cursor: pointer;
-`
+`;
 export default Item;

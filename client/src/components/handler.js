@@ -3,7 +3,6 @@ export const getDataFromServer = async (Endpoint) => {
     return fetch(Endpoint)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.status === 200) return res.data;
         else return null;
       });
@@ -11,7 +10,7 @@ export const getDataFromServer = async (Endpoint) => {
     throw window.alert(err.Message);
   }
 };
-//this function for post, patch or upadte
+//this function is for post, patch or upadte
 export const sentDataToServer = async (Endpoint, Method, Body = "") => {
   let success = false;
   const init = {
@@ -21,21 +20,10 @@ export const sentDataToServer = async (Endpoint, Method, Body = "") => {
     },
     body: JSON.stringify(Body),
   };
-  console.log(Method, init);
   if (Method === "DELETE") delete init.body;
-  console.log("endpoint", Endpoint);
   await fetch(Endpoint, init)
     .then((res) => res.json())
     .then((res) => {
-      console.log(
-        "-----",
-        Method,
-        "----*------",
-        Endpoint,
-        "-----*-------------"
-      );
-      console.log("respons is: ", res);
-
       if (res.status > 300) {
         success = false;
         throw window.alert(res.Message);
