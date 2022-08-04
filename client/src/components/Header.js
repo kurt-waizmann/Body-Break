@@ -32,10 +32,34 @@ const Header = () => {
   const { items, setSearchId } = useContext(AllItemsContext);
   //set value of search input
   const [value, setValue] = useState("");
-  console.log(value);
+
+  // make group for search value
+  const [groups, setGroups] = useState([]);
+  const calegorys = [
+    "Entertainment",
+    "Fitness",
+    "Gaming",
+    "Industrial",
+    "Lifestyle",
+    "Medical",
+    "Pets and Animals",
+  ];
+
+  useEffect(() => {
+    if (searchResults.length > 0) {
+      setGroups(
+        calegorys.map((category) => {
+          return {
+            [category]: [
+              ...searchResults.filter((item) => item.category === category),
+            ],
+          };
+        })
+      );
+    }
+  }, [value.length]);
   //create searchResults
   const searchResults = items.filter((result, index) => {
-    // console.log("index", index);
     //case insensitive and matches anywhere in word
     return result.name.toLowerCase().includes(value.toLowerCase());
   });
@@ -44,14 +68,21 @@ const Header = () => {
     //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from beginning of title to the amount of characters typed into the searchbar and return it.
-    return title.slice(0, index + value.length);
+    return title.slice(0, index - 1);
   };
   //Second half of search item
   const secondHalf = (title) => {
     //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from overlap point to end of string and return new string
-    return title.slice(index + value.length);
+    return title.slice(index , index + value.length);
+  };
+
+  const thirdHalf = (title) => {
+    //find index of where item and searchbar value overlap
+    const index = title.toLowerCase().indexOf(value.toLowerCase());
+    //slice from overlap point to end of string and return new string
+    return title.slice(index + value.length ) ;
   };
   const handleSelect = (result, _id) => {
     setSearchId(_id);
@@ -67,12 +98,13 @@ const Header = () => {
           <SearchBar
             type="text"
             value={value}
-            onChange={(ev) => {
-              setValue(ev.target.value);
+
+              onChange={(ev) => {
+                setValue(ev.target.value);
             }}
             onKeyDown={(ev) => {
-              if (ev.key === "Enter") {
-                window.alert("Please select a search result to continue");
+              if (ev.key === "Escape") {
+                setValue("");
               }
             }}
             placeholder="What are you looking for..."
@@ -81,23 +113,42 @@ const Header = () => {
             <SearchResults
               style={{ display: value.length < 2 ? "none" : "flex" }}
             >
-              {searchResults.map((item, index) => {
-                console.log("item", item);
+              {groups.map((group, index) => {
                 return (
-                  <Result
-                    key={v4()}
-                    onClick={(ev) =>
-                      handleSelect(ev.target.innerText, item._id)
-                    }
-                  >
-                    <Span key={firstHalf}>
-                      {firstHalf(item.name)}
-                      <Predictions key={secondHalf}>
-                        {secondHalf(item.name)}
-                      </Predictions>
-                    </Span>
-                  </Result>
-                );
+                  <ul>
+                    {Object.keys(group).map((category) => {
+                      if (group[category].length > 0) {
+                        return (
+                          <ul>
+                            <Category>
+                              {category}
+                            </Category>
+                            {group[category].map((item) => {
+                              return (
+                                <Result
+                                  key={v4()}
+                                  onClick={(ev) =>
+                                    handleSelect(ev.target.innerText, item._id)
+                                  }
+                                >
+                                  
+                                  <Span key={firstHalf}>
+                                    {firstHalf(item.name)}
+                                    <Predictions key={secondHalf}>
+                                      {secondHalf(item.name)}
+                                    </Predictions>
+                                      {thirdHalf(item.name)}
+                                  </Span>
+                                </Result>
+                              );
+                            })}
+                            
+                          </ul>
+                        )
+                      }
+                    })}
+                  </ul>
+                )
               })}
             </SearchResults>
           </SearchDiv>
@@ -139,11 +190,19 @@ const Header = () => {
     </>
   );
 };
+
+const Category = styled.span`
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid white;
+  font-weight: bold;
+  padding-bottom: 5px;
+`
 const Container = styled.div`
   position: relative;
 `;
 const Span = styled.span`
-  color: #80b3c4;
+  color: white ;
 `;
 const SearchDiv = styled.div`
   display: flex;
@@ -179,7 +238,7 @@ const Result = styled.li`
   }
 `;
 const Predictions = styled.span`
-  color: white;
+  color: #80b3c4;
 `;
 const Icon = styled.div`
   display: flex;
