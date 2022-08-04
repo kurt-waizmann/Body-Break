@@ -11,7 +11,6 @@ const { postOrderAndDeleteCart } = require('./handlers/postOrderAndDeleteCart')
 const { updateCart } = require('./handlers/updateCart')
 const { getItemsByCatergory } = require('./Handlers/getItemsByCatergory');
 const { deleteCartItem } = require('./Handlers/deleteCardItem');
-const { getCartNum } = require('./handlers/getCartNum');
 
 
 
@@ -49,16 +48,11 @@ express()
   // get items by their category type
   .get("/api/items/category/:category", getItemsByCatergory)
 
- 
-
   // get details about what's in the cart
   .get("/api/cart/details", getCartDetails)
 
   // get details about the completed order
   .get("/api/order/details", getOrderDetails)
-
-  // get number of items in the cart
-  .get("/api/cart/num", getCartNum)
 
   // get bacon
   .get('/bacon', (req, res) => res.status(200).json('🥓'))
@@ -68,7 +62,7 @@ express()
 
 // POST ENDPOINTS // 
 
-  // post order after completed purchase
+  // post order after completed purchase AND delete cart
   .post("/api/order/details", postOrderAndDeleteCart)
 
   // post items into the cart
@@ -86,6 +80,8 @@ express()
 
 
   //Delete ENDPOINTS 
+
+  // Delete an item in the cart
   .delete("/api/cart/deleteItem/:_id", deleteCartItem)
 
 

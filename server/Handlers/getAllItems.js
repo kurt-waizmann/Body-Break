@@ -5,8 +5,8 @@ const dbName = "Group-Project-Watchout";
 
 
 const getAllItems = async (req, res) => {
-    //jon items and companies collections by companyId
-    const query = [
+  // query variable
+  const query = [
         {
         $lookup: {
           from: 'companies',
@@ -35,7 +35,6 @@ const getAllItems = async (req, res) => {
 
         // connect to the database 
         const db = client.db(dbName);
-        console.log("connected!");
 
         // grabbing from the collection
         const result = (await db.collection("items").aggregate(query).toArray());

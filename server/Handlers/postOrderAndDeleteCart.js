@@ -4,9 +4,9 @@ const client = creatClient();
 const dbName = "Group-Project-Watchout";
 
 const postOrderAndDeleteCart = async (req, res) => {
+
   // data format
   const data = {
-    // _id: req.body._id,
     creditCard: req.body.creditCard,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -15,25 +15,26 @@ const postOrderAndDeleteCart = async (req, res) => {
     items: req.body.items,
     cost: req.body.cost,
   };
+
   try {
     // connect to the client
     await client.connect();
     
     // connect to the database
     const db = client.db(dbName);
-    console.log("connected!");
-    let errorDetection = [];
-    data.items.forEach((item) => {
-      console.log("---------------forEach------------")
-      console.log("errorDetection",item);
 
+    // variable for errors
+    let errorDetection = [];
+
+    // post and delete from collection
+    data.items.forEach((item) => {
       const resualt = db
       .collection("items")
       .updateOne({ _id: item.item_id }, { $inc: { numInStock: -item.qty } });
       if (resualt.modifiedCount === 0) errorDetection.push(item);
     });
-    console.log('----------------------------------');
-    console.log("errorDetection",errorDetection);
+
+    
     // post the order after purchased
     if (errorDetection.length === 0) {
       // post the order after purchased

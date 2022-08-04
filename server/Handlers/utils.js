@@ -1,4 +1,6 @@
 
+
+// function to create client
 const creatClient = () =>{
     const { MongoClient } = require("mongodb");
     require('dotenv').config();
