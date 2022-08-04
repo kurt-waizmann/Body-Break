@@ -6,7 +6,7 @@ import allitems from "../../src/Imgs/All-Items.png";
 import styled from "styled-components";
 
 const CategoryBanner = ({ category }) => {
-  
+  //check props for correct params from CategoryComponent and render correct banner image.
   if (category === "medical") {
     return (
       <>
