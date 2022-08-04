@@ -19,7 +19,9 @@ const SearchComponent = (item) => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  background-color: #1c1b1b;
+  padding-top: 20px;
+  padding-bottom: 20px;
   color: white;
 `;
 
