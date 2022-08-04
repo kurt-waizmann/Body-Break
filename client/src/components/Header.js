@@ -22,14 +22,11 @@ const Header = () => {
   }, []);
 
   const nav = useNavigate();
+
   // Below code is for adding our value beside our cart icon.
   const qty = state.cardList.reduce((accumulator, curValue) => {
     return accumulator + curValue.qty;
   }, 0);
-
-  const handleChange = (value) => {
-    nav(value);
-  };
 
   //get items from context
   const { items, setSearchId } = useContext(AllItemsContext);
@@ -42,22 +39,23 @@ const Header = () => {
     //case insensitive and matches anywhere in word
     return result.name.toLowerCase().includes(value.toLowerCase());
   });
-  //Create first half of search suggestion
+  //Create first half of search item
   const firstHalf = (title) => {
-    //find index of where suggestion and searchbar value overlap
+    //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from beginning of title to the amount of characters typed into the searchbar and return it.
     return title.slice(0, index + value.length);
   };
-  //Second half of search suggestion
+  //Second half of search item
   const secondHalf = (title) => {
-    //find index of where suggestion and searchbar value overlap
+    //find index of where item and searchbar value overlap
     const index = title.toLowerCase().indexOf(value.toLowerCase());
     //slice from overlap point to end of string and return new string
     return title.slice(index + value.length);
   };
   const handleSelect = (result, _id) => {
     setSearchId(_id);
+    setValue("");
     nav("/SearchComponent");
   };
   return (
@@ -65,7 +63,7 @@ const Header = () => {
       <Wrapper>
         <img src={Logo} style={{ width: "30px", borderRadius: "50%" }} />
         <Company to="/">BodyBreak</Company>
-        <SearchDiv>
+        <Container>
           <SearchBar
             type="text"
             value={value}
@@ -74,37 +72,36 @@ const Header = () => {
             }}
             onKeyDown={(ev) => {
               if (ev.key === "Enter") {
-                setValue("");
+                window.alert("Please select a search result to continue");
               }
             }}
             placeholder="What are you looking for..."
           ></SearchBar>
-          <SearchResults
-            style={{ display: value.length < 2 ? "none" : "flex" }}
-          >
-            {searchResults.map((item, index) => {
-              console.log("item", item);
-              return (
-                <Result
-                  key={v4()}
-                  onClick={(ev) => handleSelect(ev.target.innerText, item._id)}
-                >
-                  <span key={firstHalf}>
-                    {firstHalf(item.name)}
-                    <Predictions key={secondHalf}>
-                      {secondHalf(item.name)}
-                    </Predictions>
-                    {/* <em> in</em>  */}
-                    {/* <Catagory key={categories[catId].name}>
-                    {" "}
-                    {categories[catId].name}
-                  </Catagory>  */}
-                  </span>
-                </Result>
-              );
-            })}
-          </SearchResults>
-        </SearchDiv>
+          <SearchDiv>
+            <SearchResults
+              style={{ display: value.length < 2 ? "none" : "flex" }}
+            >
+              {searchResults.map((item, index) => {
+                console.log("item", item);
+                return (
+                  <Result
+                    key={v4()}
+                    onClick={(ev) =>
+                      handleSelect(ev.target.innerText, item._id)
+                    }
+                  >
+                    <Span key={firstHalf}>
+                      {firstHalf(item.name)}
+                      <Predictions key={secondHalf}>
+                        {secondHalf(item.name)}
+                      </Predictions>
+                    </Span>
+                  </Result>
+                );
+              })}
+            </SearchResults>
+          </SearchDiv>
+        </Container>
         <CartTxt>
           Cart
           <IconDiv>
@@ -142,9 +139,20 @@ const Header = () => {
     </>
   );
 };
+const Container = styled.div`
+  position: relative;
+`;
+const Span = styled.span`
+  color: #80b3c4;
+`;
 const SearchDiv = styled.div`
   display: flex;
   flex-direction: column;
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  overflow: auto;
+  border-radius: 4px;
 `;
 const SearchResults = styled.ul`
   display: flex;
@@ -152,19 +160,16 @@ const SearchResults = styled.ul`
   flex-direction: column;
   color: white;
   background-color: #313131;
-  margin: 0px 0px;
+  cursor: pointer;
+
   border: none;
-  /* box-shadow: 0px 2px 8px 3px #d1d1d1; */
   width: auto;
-  height: 300px;
-  margin-top: 250px;
-  /* margin-left: 31.5%; */
+  height: auto;
   padding: 10px;
-  z-index: 10;
+  z-index: 5;
 `;
 const Result = styled.li`
   display: flex;
-  /* overflow: hidden; */
   font-size: 14px;
   color: white;
   margin-bottom: 5px;
@@ -174,7 +179,7 @@ const Result = styled.li`
   }
 `;
 const Predictions = styled.span`
-  font-weight: bold;
+  color: white;
 `;
 const Icon = styled.div`
   display: flex;

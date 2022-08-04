@@ -55,7 +55,7 @@ const BannerImg = styled.div`
   justify-content: center;
   height: 250px;
   margin-bottom: 20px;
-  margin-top: 20px;
+  padding-top: 20px;
 `;
 
 const Img = styled.img`

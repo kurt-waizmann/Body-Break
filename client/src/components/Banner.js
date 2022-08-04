@@ -10,7 +10,7 @@ const Banner = () => {
       </BannerImg>
     </>
   );
-}; 
+};
 
 //img div
 const BannerImg = styled.div`
@@ -18,7 +18,7 @@ const BannerImg = styled.div`
   justify-content: center;
   height: 250px;
   margin-bottom: 0px;
-  margin-top: 20px;
+  padding-top: 20px;
 `;
 //img element
 const Img = styled.img`
