@@ -22,12 +22,13 @@ export const AllItemsProvider = ({ children }) => {
     fetchFunc();
   }, []);
 
+  //Catch errors if fetch fails
   if (setItemsStatus === "Error") {
     return <>Error</>;
   }
 
   if (items === null) {
-    return <LoadingPage/>;
+    return <LoadingPage />;
   }
 
   return (

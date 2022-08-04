@@ -8,22 +8,22 @@ import CategoryFilter from "./CategoryFilter";
 import CategoryBanner from "./CategoryBanner";
 
 const CategoryComponent = () => {
+  //get items information from context
   const { items } = useContext(AllItemsContext);
   //Get category from params
   const { category } = useParams();
-  // console.log("params", typeof category);
-  //use params to filter items from category
+  //use params to filter items by category
   const categoryItems = CategoryFilter(category);
-  // console.log(categoryItems)
 
   return (
     <>
       <Wrapper>
         <CategoryBanner category={category} />
         <Container>
+          {/* allitems page has different map than other catagories, so we check params to check for allitems params */}
           {category === "allitems"
             ? items.map((item, index) => {
-                return <ProductComponent key={index} item={item} />;
+                return <ProductComponent key={v4()} item={item} />;
               })
             : categoryItems?.length > 0 &&
               categoryItems.map((item) => {
