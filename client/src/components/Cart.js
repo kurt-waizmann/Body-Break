@@ -4,26 +4,30 @@ import { CardConext } from "./CardContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  //get context
   const {
     state,
     actions: { get_Items, update_item_qty, delete_Item },
   } = useContext(CardConext);
   console.log("hellooo", state.cardList, state);
 
+  //get items from context
   useEffect(() => {
     get_Items();
-    console.log("useEffect", state.cardList);
+    // console.log("useEffect", state.cardList);
   }, []);
 
+  //update numInStock if quantity bought is less than numInStock
   const addFunc = (_id, numInStock, qty) => {
     if (qty < numInStock) update_item_qty({ _id: _id, inc: 1 });
   };
-
+  //subtract items from cart
   const subtractFunc = (_id, qty) => {
     if (qty > 1) update_item_qty({ _id: _id, inc: -1 });
   };
 
   const nav = useNavigate();
+  //calculate subtotal of all items in cart
   const sum = state.cardList.reduce((accumulator, curValue) => {
     const price = Math.floor(curValue.price.slice(1, curValue.price.length));
     return accumulator + curValue.qty * price;
@@ -35,6 +39,7 @@ const Cart = () => {
         <InnerWrap>
           <Summary>
             <Title>Shopping Cart</Title>
+            {/* if cart info recieved map out items in cart */}
             {state.cardList?.length && (
               <div>
                 {state.cardList.map((item) => {
