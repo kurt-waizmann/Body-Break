@@ -1,4 +1,3 @@
-<img src="./client/src/imgs/bodybreak-banner.jpg" style="width: 100%;" />
 <img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
 
 ---
@@ -20,14 +19,30 @@
 
 # **Features**
 
-
-
 ## Predictive Search Bar
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
+
+---
+
 ## Responsive Shopping Cart
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
+
+---
+
 ## RESTFUL Backend
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
+
+---
+
 ## User Database
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
+
+---
+
 ## Purchase Database
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
+
+---
+
 ## Inventory Database
-
-
-.
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
