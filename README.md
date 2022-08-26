@@ -1,4 +1,5 @@
 <img src="./client/src/imgs/bodybreak-banner.jpg" style="width: 100%;" />
+<img src="./server/assets/bodybreak-banner.jpg" style="width: 100%;" />
 
 ---
 
